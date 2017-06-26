@@ -32,7 +32,7 @@
       
         <li class="list-item">
           
-            <a href="/" class="item-link">Home</a>
+            <a href="/" class="item-link active">Home</a>
           
         </li>
       
@@ -71,7 +71,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link">Home</a>
+              <a href="/" class="menu-link mobile-active">Home</a>
             
           </li>
         
@@ -104,98 +104,82 @@
   </div>
 </header>
 
-    <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/04/11/Flask-Context-Processors/">Flask Context Processors</a>
+      </h2>
+      <p class="article-date">2017-04-11</p>
+      
+        
+  <span class="tag-code">Flask</span>
+
+      
+      <div class="article-summary">
+        
+          
+我学习flask是跟着Miguel Grinberg的《Flask Web Development》上手的、书上都是选了一些更为方便实用的扩展包进行开发的，跟着书中的项目做下来，能有了一个比较好的flask架构方案，但对很多flask的机制还是很模糊。最近自己在写一个小项目，遇到许多坑，于 ...
+        
+      </div>
+      <a class="more" href="/2017/04/11/Flask-Context-Processors/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/04/10/flask-+-sqlalchemy-存储emoji/">flask+sqlalchemy 存储emoji</a>
+      </h2>
+      <p class="article-date">2017-04-10</p>
+      
+        
+  <span class="tag-code">Flask</span>
+
+  <span class="tag-code">MySQL</span>
+
+      
+      <div class="article-summary">
+        
+            最近在用flask写一个web应用，需要存储用户发表的内容，可能含有 emoji 等内容，但是在存储的时候总是报错 (_mysql_exceptions.OperationalError) (1366, &quot;Incorrect string value: &#39;\\xF0\\ ...
+        
+      </div>
+      <a class="more" href="/2017/04/10/flask-+-sqlalchemy-存储emoji/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/04/10/Flask-request-模块概览/">Flask request 模块概览</a>
+      </h2>
+      <p class="article-date">2017-04-10</p>
+      
+        
+  <span class="tag-code">Flask</span>
+
+      
+      <div class="article-summary">
+        
+          
+request.form
+获取POST或PUT的数据, request.form[&#39;data_of_post_or_put&#39;]
+为防止 request.form[&#39;key&#39;] 因key不存在抛出异常，最好用 request.form.get(&#39;key ...
+        
+      </div>
+      <a class="more" href="/2017/04/10/Flask-request-模块概览/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>
+  
 </div>
-<main class="app-body" id="archives">
-
-
-
-  <section class="time-section">
-  <h1 class="section-year">
-    2017
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2017/06/26/hello-world/" class="archive-title">Hello World</a>
-        <p class="archive-date">06-26</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/26/奇怪的-+=/" class="archive-title">奇怪的 +=</a>
-        <p class="archive-date">05-26</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/18/教务处考试系统自动答题/" class="archive-title">教务处考试系统自动答题</a>
-        <p class="archive-date">05-18</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/09/使用Flask-RESTful-设计-RESTful-API/" class="archive-title">使用Flask-RESTful-设计-RESTful-API</a>
-        <p class="archive-date">05-09</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/09/RESTful-API--的Flask手动实现/" class="archive-title">RESTful API的Flask手动实现</a>
-        <p class="archive-date">05-09</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/25/Nginx-+-uwsgi-+-Supervisor-部署Flask/" class="archive-title">Nginx + uwsgi + Supervisor部署flask</a>
-        <p class="archive-date">04-25</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/" class="archive-title">《redis实战》笔记--数据结构及其命令</a>
-        <p class="archive-date">04-24</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/24/https/" class="archive-title">HTTPS 配置</a>
-        <p class="archive-date">04-24</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/17/Mac-下redis安装及与Python集成/" class="archive-title">Mac下redis安装及与Python集成</a>
-        <p class="archive-date">04-17</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/16/关于apt-get-remove-与-apt-get-purge/" class="archive-title">关于apt-get remove 与apt-get purge</a>
-        <p class="archive-date">04-16</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/11/Flask-Context-Processors/" class="archive-title">Flask Context Processors</a>
-        <p class="archive-date">04-11</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/10/flask-+-sqlalchemy-存储emoji/" class="archive-title">flask+sqlalchemy 存储emoji</a>
-        <p class="archive-date">04-10</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/10/Flask-request-模块概览/" class="archive-title">Flask request 模块概览</a>
-        <p class="archive-date">04-10</p>
-      </div>
-    
-  </div>
-</section>
-
+  
 </main>
 
-<script>
-  (function () {
-    var url = 'https://hukaixuan.github.io/archives/2017/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
-  })();
-</script>
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>

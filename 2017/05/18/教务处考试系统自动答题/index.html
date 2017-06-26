@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="The blog of hukx.michael">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  <title>
+    
+      教务处考试系统自动答题 | hukx.michael
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+  <script src="/js/gitment.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>hukx.michael</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>教务处考试系统自动答题</h2>
+  <p class="post-date">2017-05-18</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><p><img src="http://upload-images.jianshu.io/upload_images/3340699-03274c7a781a330d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>学校要求登录教务处网站做一个测试题，我做了看了看，30分钟300道题，240分几个，题量不少，题还不好做。研究了一下发现原来在网站上就有题库的，但是一道题只有6s 的时间作答，边查边做肯定是时间不够的。灵光一闪，人生苦短，我用Python，写个自动答题的机器人吧。    </p>
+<hr>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ul>
+<li>爬取题库并存储到数据库</li>
+<li>模拟登录教务系统</li>
+<li>进入答题页面，遍历题目，匹配数据库中记录，给出答案</li>
+<li>提交数据</li>
+</ul>
+<h3 id="用到的工具："><a href="#用到的工具：" class="headerlink" title="用到的工具："></a>用到的工具：</h3><ul>
+<li>Python</li>
+<li>requests</li>
+<li>BeautifulSoup</li>
+<li>mongodb</li>
+</ul>
+<h3 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h3><ul>
+<li><h4 id="模拟登录"><a href="#模拟登录" class="headerlink" title="模拟登录"></a>模拟登录</h4>以前研究过学校教务系统的登录，现在终于在正事上排上用场了。学校教务系统的登录还算简单，没有验证码，唯一一点儿小障碍是登录表单会有几个隐藏字段，有个字段会动态改变，解决就是先GET一下登录网址，获取这几个字段的值，再随表单进行POST。代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">import os</div><div class="line"></div><div class="line">headers = &#123;</div><div class="line">    &apos;Connection&apos;: &apos;keep-alive&apos;,</div><div class="line">    &apos;Cache-Control&apos;: &apos;max-age=0&apos;,</div><div class="line">    &apos;Upgrade-Insecure-Requests&apos;: &apos;1&apos;,</div><div class="line">    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36&apos;,</div><div class="line">    &apos;Accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</div><div class="line">    &apos;Accept-Encoding&apos;: &apos;gzip, deflate, sdch&apos;,</div><div class="line">    &apos;Accept-Language&apos;: &apos;zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">session = requests.session()</div><div class="line"></div><div class="line"># 先GET一下登录页面获得隐藏字段</div><div class="line">resp = session.get(&quot;http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2F202.194.188.19%2Fcaslogin.jsp&quot;, headers=headers)</div><div class="line">bsObj = BeautifulSoup(resp.text, &quot;html.parser&quot;)     </div><div class="line">lt = bsObj.find(&apos;input&apos;, &#123;&apos;name&apos;:&apos;lt&apos;&#125;)[&apos;value&apos;]</div><div class="line">execution = bsObj.find(&apos;input&apos;, &#123;&apos;name&apos;:&apos;execution&apos;&#125;)[&apos;value&apos;]</div><div class="line"></div><div class="line">params = &#123;</div><div class="line">    &apos;username&apos;: os.environ.get(&apos;STU_ID&apos;),   # 环境变量获取的学号</div><div class="line">    &apos;password&apos;: os.environ.get(&apos;STU_PWD&apos;), # 环境变量获取的密码</div><div class="line">    &apos;lt&apos;: lt,</div><div class="line">    &apos;execution&apos;: execution,</div><div class="line">    &apos;_eventId&apos;: &apos;submit&apos;,</div><div class="line">    &apos;rmShown&apos;: &apos;1&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># post 数据登录成功</div><div class="line">resp = session.post(&quot;http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2F202.194.188.19%2Fcaslogin.jsp&quot;, data=params, headers=headers)</div></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="题库爬取"><a href="#题库爬取" class="headerlink" title="题库爬取"></a>题库爬取</h4>用了Python的requests库进行页面的爬取，励志小哥写的这个库的确好用，特别是运用 <code>requests.session()</code>之后，处理好登录之后，再也不用管那些烦人的cookie 啥的了，用了BeautifulSoup来进行页面解析，用起来也是很顺手。开始有乱码，一看网页编码是gb2312的，稍微设置一下也OK了。<br>内容有了，当然要存储起来了，不然每次答题都有爬题库多麻烦，何况是些千年不变的东西。开始用的是MySQL，然而编码问题让人头疼，设置编码为gb2312，存储的时候说有内容 gb2312 又解析不了，于是程序就挂了。搞了很长时间也没搞定，还把我的 Sequel Pro 给搞挂了，f***!<br>静下心来一想，题库只要写数据库写一遍就OK了，但是答题的时候会频繁地查询数据库，用nosql数据库多好。题目做键，答案做值就行了。看过redis，但毕竟是内存型数据库，虽然快，但是还要做持久化，直接用mongodb吧，还没看过，刚好学习了，边学边用。<br>爬取并存储题库部分的代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">tikubhs = [8692, 10988, 10989, 10990, 10991, 10992, 10993, 10994, 10995]  # 每一类题库的编号</div><div class="line">pages = [153, 77, 13, 18, 22, 27, 10, 39, 12]  # 每一个题库的题目页数</div><div class="line"></div><div class="line">from pymongo import MongoClient</div><div class="line">client = MongoClient()</div><div class="line">db = client.shitiDB    # 数据库名 shitiDB</div><div class="line"></div><div class="line">shiti_table = db.shitis    # 表名 shitis</div><div class="line"></div><div class="line">for tikubh, page_range in zip(tikubhs, pages):</div><div class="line">    for page in range(1, page_range+1):</div><div class="line">        url = &quot;http://aqjy.qfnu.edu.cn/redir.php?catalog_id=6&amp;cmd=learning&amp;tikubh=&quot;+str(tikubh)+&quot;&amp;page=&quot;+str(page)</div><div class="line">        resp = session.get(url)</div><div class="line">        resp.encoding = &apos;gb2312&apos;</div><div class="line">        bsObj = BeautifulSoup(resp.text, &quot;html.parser&quot;)</div><div class="line">        shitis = bsObj.find_all(&apos;div&apos;, class_=&apos;shiti&apos;)</div><div class="line">        daans = bsObj.find_all(&apos;span&apos;, style=&apos;color:#666666&apos;)</div><div class="line">        values = []</div><div class="line">        for timu_str, daan_str in zip(shitis, daans):</div><div class="line">            shitibh = int(timu_str.h3.text[0:5])</div><div class="line">            timu = timu_str.h3.text[6:]</div><div class="line">            daan = daan_str.text[daan_str.text.find(&apos;标准答案&apos;)+5:].strip(&apos; ）&apos;)</div><div class="line">            d = &#123;&apos;shitibh&apos;:shitibh, &apos;tikubh&apos;:tikubh, &apos;timu&apos;:timu, &apos;daan&apos;:daan&#125;</div><div class="line">            values.append(d)</div><div class="line">        new_result = shiti_table.insert_many(values)</div></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="模拟作答"><a href="#模拟作答" class="headerlink" title="模拟作答"></a>模拟作答</h4><p>这一部分是最关键的部分，再这上面的耗时比较多，大部分时间都在研究他的数据的提交流程。<br>题目是分页的，且选择页面或点击上下页的时候，地址栏的地址是不变的，说明分页是通过js实现的，而不是直接用的链接：<br><img src="http://upload-images.jianshu.io/upload_images/3340699-d4cc03a95b9405f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>研究得知，上下页和页面选择都是通过post数据标志到本页面实现的<br><img src="http://upload-images.jianshu.io/upload_images/3340699-47cb78e8acd6aa51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>搞懂了这些数据的意义和他们之间的关系，用代码模拟出来就OK了，当作到最后一页完成的时候，把<code>tijiao</code>标志也设为1，POST到原URL就完成了作答，这部分代码就不贴了，文末有GitHub链接。</p>
+</li>
+<li><h4 id="可能的改进"><a href="#可能的改进" class="headerlink" title="可能的改进"></a>可能的改进</h4><ul>
+<li>写好之后许多同学找我给答题，看看如果多的话用flask搭成个web服务。高效还不用担心我泄露你们的密码了。</li>
+<li>爬题库的时候想的是爬答案的文本，爬成了ABCD的选项，多亏选项和答案文本的对应关系没变，但也造成个别问题答案会有错误，致使我给答题的同学分数基本都在297-299之间（满分300分），少有300分的同学。本来想改来着，转念一想都满分也不太好，有点误差也好，可能这部分不会改了，感兴趣的可以自己改改看。</li>
+</ul>
+</li>
+</ul>
+<p>ps: 本校的可以直接搭好拿来用就可以了，其他同学如有类似需求，这个系统是某公司开发的，好多学校都在用，folk一份改改应该也没问题。 <a href="https://github.com/hukaixuan/spider-school" target="_blank" rel="external">戳到github吧</a>，欢迎 star、folk。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <span class="tag-code">Python</span>
+
+  <span class="tag-code">爬虫</span>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    <div id="comments"></div>
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://hukaixuan.github.io/2017/05/18/教务处考试系统自动答题/';
+    $('#article-banner').geopattern(url)
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://yanm1ng.cn/error-img.png') 
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
