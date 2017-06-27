@@ -126,21 +126,23 @@
       success: function (data) {
         var repos = data.sort(function(a, b) {
           return (b.stargazers_count - a.stargazers_count)
-        }).slice(0, 6)
+        })
         var cardHtml = repos.map(function(item) {
-          return (
-            '<section class="project-card">' + 
-              '<a class="card-wrap">' +
-                '<div class="card-header" data-name="'+ item.name +'"></div>' +
-                '<h3 class="card-title">' + item.name + '</h3>' +
-                '<p class="card-description">' + item.description + '</p>' +
-                '<div class="card-footer">' +
-                  '<span><i class="fa fa-star"></i>'+ item.stargazers_count +'</span>' +
-                  '<span><i class="fa fa-code-fork"></i>' + item.forks_count +'</span>' +
-                '</div>' +
-              '</a>' +
-            '</section>'
-          )
+          if(item.stargazers_count>0){
+            return (
+              '<section class="project-card">' + 
+                '<a class="card-wrap" href="'+ item.html_url +'">' +
+                  '<div class="card-header" data-name="'+ item.name +'"></div>' +
+                  '<h3 class="card-title">' + item.name + '</h3>' +
+                  '<p class="card-description">' + item.description + '</p>' +
+                  '<div class="card-footer">' +
+                    '<span><i class="fa fa-star"></i>'+ item.stargazers_count +'</span>' +
+                    '<span><i class="fa fa-code-fork"></i>' + item.forks_count +'</span>' +
+                  '</div>' +
+                '</a>' +
+              '</section>'
+            )
+          }
         }).join('')
         $('#all-project').html(cardHtml)
         $('.card-header').each(function() {
