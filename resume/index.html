@@ -7,7 +7,7 @@
   <meta name="keyword" content="hexo-theme, vuejs">
   <title>
     
-      hukx.michael
+      Resume | hukx.michael
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -117,112 +117,118 @@
 </header>
 
     <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
-</div>
-<main class="app-body" id="archives">
-
-
-
-  <section class="time-section">
-  <h1 class="section-year">
-    2017
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2017/06/30/Metaprogramming/" class="archive-title">Metaprogramming</a>
-        <p class="archive-date">06-30</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/06/30/项目演示--基于地理位置的社交系统/" class="archive-title">项目演示--基于地理位置的社交系统</a>
-        <p class="archive-date">06-30</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/06/29/Python_cookbook/" class="archive-title">Python Cookbook -- 数据结构与算法</a>
-        <p class="archive-date">06-29</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/06/28/git相关/" class="archive-title">git 相关技巧</a>
-        <p class="archive-date">06-28</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/26/奇怪的-+=/" class="archive-title">奇怪的 +=</a>
-        <p class="archive-date">05-26</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/18/教务处考试系统自动答题/" class="archive-title">教务处考试系统自动答题</a>
-        <p class="archive-date">05-18</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/09/使用Flask-RESTful-设计-RESTful-API/" class="archive-title">使用Flask-RESTful-设计-RESTful-API</a>
-        <p class="archive-date">05-09</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/05/09/RESTful-API--的Flask手动实现/" class="archive-title">RESTful API的Flask手动实现</a>
-        <p class="archive-date">05-09</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/25/Nginx-+-uwsgi-+-Supervisor-部署Flask/" class="archive-title">Nginx + uwsgi + Supervisor部署flask</a>
-        <p class="archive-date">04-25</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/" class="archive-title">《redis实战》笔记--数据结构及其命令</a>
-        <p class="archive-date">04-24</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/24/https/" class="archive-title">HTTPS 配置</a>
-        <p class="archive-date">04-24</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/17/Mac-下redis安装及与Python集成/" class="archive-title">Mac下redis安装及与Python集成</a>
-        <p class="archive-date">04-17</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/16/关于apt-get-remove-与-apt-get-purge/" class="archive-title">关于apt-get remove 与apt-get purge</a>
-        <p class="archive-date">04-16</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/11/Flask-Context-Processors/" class="archive-title">Flask Context Processors</a>
-        <p class="archive-date">04-11</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/10/flask-+-sqlalchemy-存储emoji/" class="archive-title">flask+sqlalchemy 存储emoji</a>
-        <p class="archive-date">04-10</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/04/10/Flask-request-模块概览/" class="archive-title">Flask request 模块概览</a>
-        <p class="archive-date">04-10</p>
-      </div>
-    
+  <h2>Resume</h2>
+  <p class="post-date">2017-06-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
   </div>
-</section>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content">
 
+	<div class="row">
+    <embed src="/images/resume.pdf" width="100%" height="800" type="application/pdf">
+	</div>
+
+
+
+</section>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    <div id="comments"></div>
+  </article>
 </main>
 
 <script>
   (function () {
-    var url = 'https://hukaixuan.github.io/archives/2017/page/2/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
+    var url = 'https://hukaixuan.github.io/resume/index.html';
+    $('#article-banner').geopattern(url)
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://yanm1ng.cn/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "hukaixuan";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        owner: "hukaixuan",
+        repo: "hukaixuan.github.io",
+        oauth: {
+          client_id: "057dbc7c9172e901c3bb",
+          client_secret: "8a90a976396137e6ac92922a4680dcb8c8130cfb"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
   })();
 </script>
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
