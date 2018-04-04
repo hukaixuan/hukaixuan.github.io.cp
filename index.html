@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hukx.michael</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The blog of hukx.michael">
+<meta property="og:type" content="website">
+<meta property="og:title" content="hukx.michael">
+<meta property="og:url" content="https://hukaixuan.github.io/index.html">
+<meta property="og:site_name" content="hukx.michael">
+<meta property="og:description" content="The blog of hukx.michael">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hukx.michael">
+<meta name="twitter:description" content="The blog of hukx.michael">
+  
+    <link rel="alternate" href="/atom.xml" title="hukx.michael" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">hukx.michael</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hukaixuan.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-项目演示--基于地理位置的社交系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/30/项目演示--基于地理位置的社交系统/" class="article-date">
+  <time datetime="2017-06-30T02:27:49.000Z" itemprop="datePublished">2017-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/30/项目演示--基于地理位置的社交系统/">项目演示--基于地理位置的社交系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用Flask写了一个小web应用，结合了高德地图的API</p>
+<p>项目地址：<a href="https://github.com/hukaixuan/around" target="_blank" rel="external">https://github.com/hukaixuan/around</a></p>
+<p>基本功能演示：<br><img src="/images/show.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/06/30/项目演示--基于地理位置的社交系统/" data-id="cjfktb0bv000t0677yaots1hj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目展示/">项目展示</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python_cookbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/29/Python_cookbook/" class="article-date">
+  <time datetime="2017-06-29T02:45:02.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/29/Python_cookbook/">Python Cookbook笔记 -- 数据结构与算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="记录最后N项（历史记录功能）collections-deque-maxlen-N"><a href="#记录最后N项（历史记录功能）collections-deque-maxlen-N" class="headerlink" title="记录最后N项（历史记录功能）collections.deque(maxlen=N)"></a>记录最后N项（历史记录功能）<strong>collections.deque(maxlen=N)</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(lines, pattern, history=<span class="number">5</span>)</span>:</span></div><div class="line">    previous_lines = deque(maxlen=history)</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</div><div class="line">        <span class="keyword">if</span> pattern <span class="keyword">in</span> line:</div><div class="line">            <span class="keyword">yield</span> line, previous_lines</div><div class="line">        previous_lines.append(line)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">with</span> open(<span class="string">'somefile.txt'</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> line, previous_lines <span class="keyword">in</span> search(f, <span class="string">'Apple'</span>, <span class="number">5</span>):</div><div class="line">            <span class="keyword">for</span> pline <span class="keyword">in</span> previous_lines:</div><div class="line">                print(pline, end=<span class="string">''</span>)</div><div class="line">            print(line, end=<span class="string">''</span>)</div><div class="line">            print(<span class="string">'-'</span>*<span class="number">20</span>)</div></pre></td></tr></table></figure>
+<h3 id="找到最大或最小的N个项：-heapq-nlargest-n-nums-heapq-hsmallest-n-nums"><a href="#找到最大或最小的N个项：-heapq-nlargest-n-nums-heapq-hsmallest-n-nums" class="headerlink" title="找到最大或最小的N个项： heapq.nlargest(n, nums) / heapq.hsmallest(n, nums)"></a>找到最大或最小的N个项： <strong>heapq.nlargest(n, nums) / heapq.hsmallest(n, nums)</strong></h3><h3 id="实现优先队列："><a href="#实现优先队列：" class="headerlink" title="实现优先队列："></a>实现优先队列：</h3><p>heapq默认是从小到大的，所以用 -priority 来做依据push，结果是从大到小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> heapq</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PriorityQueue</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self._queue = []</div><div class="line">        self._index = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, item, priority)</span>:</span></div><div class="line">        heapq.heappush(self._queue, (-priority, self._index, item)) </div><div class="line">        self._index += <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> heapq.heappop(self._queue)[<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></div><div class="line">        self.name = name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'item(&#123;!r&#125;)'</span>.format(self.name)</div><div class="line"></div><div class="line">q = PriorityQueue()</div><div class="line">q.push(Item(<span class="string">'foo'</span>), <span class="number">1</span>)</div><div class="line">q.push(Item(<span class="string">'bar'</span>), <span class="number">5</span>)</div><div class="line">q.push(Item(<span class="string">'spam'</span>), <span class="number">4</span>)</div><div class="line">q.push(Item(<span class="string">'grok'</span>), <span class="number">1</span>)</div><div class="line"></div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div></pre></td></tr></table></figure>
+<h3 id="一键对多值的映射：-collections-defaultdict"><a href="#一键对多值的映射：-collections-defaultdict" class="headerlink" title="一键对多值的映射： collections.defaultdict"></a>一键对多值的映射： <strong>collections.defaultdict</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">d = defaultdict(list) </div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">1</span>)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">2</span>)</div><div class="line">d[<span class="string">'b'</span>].append(<span class="number">3</span>)</div><div class="line"></div><div class="line">d = defaultdict(set)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">1</span>)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">2</span>)</div><div class="line">d[<span class="string">'b'</span>].append(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<h3 id="字典保留插入顺序：collections-OrderedDict"><a href="#字典保留插入顺序：collections-OrderedDict" class="headerlink" title="字典保留插入顺序：collections.OrderedDict"></a>字典保留插入顺序：<strong>collections.OrderedDict</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line">d = OrderedDict()</div><div class="line">d[<span class="string">'foo'</span>] = <span class="number">1</span></div><div class="line">d[<span class="string">'bar'</span>] = <span class="number">2</span></div><div class="line">d[<span class="string">'spam'</span>] = <span class="number">3</span></div><div class="line">d[<span class="string">'grok'</span>] = <span class="number">4</span></div></pre></td></tr></table></figure>
+<ul>
+<li>OrderedDict占用的空间比较大</li>
+<li>可以用来序列化或编码的时候保持顺序：<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line">json.dumps(d)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="字典的并交等运算："><a href="#字典的并交等运算：" class="headerlink" title="字典的并交等运算："></a>字典的并交等运算：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>, <span class="string">'z'</span>:<span class="number">3</span>&#125;</div><div class="line">b = &#123;<span class="string">'w'</span>:<span class="number">10</span>, <span class="string">'x'</span>:<span class="number">11</span>, <span class="string">'y'</span>:<span class="number">12</span>&#125;</div><div class="line">a.keys() &amp; b.keys()</div><div class="line">a.keys() - b.keys()</div><div class="line">a.items() &amp; b.items()</div></pre></td></tr></table></figure>
+<p>keys / items 可以执行 set 的一些操作，<br>values 不可以，因为 values 没有唯一性。</p>
+<h3 id="保持序列的顺序不变删除重复项："><a href="#保持序列的顺序不变删除重复项：" class="headerlink" title="保持序列的顺序不变删除重复项："></a>保持序列的顺序不变删除重复项：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dedupe</span><span class="params">(items, key=None)</span>:</span></div><div class="line">	seen = set()</div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> items:</div><div class="line">		val = item <span class="keyword">if</span> key <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">else</span> key(item)</div><div class="line">		<span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> seen:</div><div class="line">			<span class="keyword">yield</span> item</div><div class="line">			seen.add(val)</div><div class="line">			</div><div class="line">a = [&#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">3</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">2</span>, <span class="string">'y'</span>:<span class="number">4</span>&#125;]</div><div class="line">list(dedupe(a, key=<span class="keyword">lambda</span> d: (d[<span class="string">'x'</span>], d[<span class="string">'y'</span>])))</div></pre></td></tr></table></figure>
+<h3 id="命名切片：name-slice-start-stop-step"><a href="#命名切片：name-slice-start-stop-step" class="headerlink" title="命名切片：name = slice(start, stop, step)"></a>命名切片：<strong>name = slice(start, stop, step)</strong></h3><h3 id="计算某序列中最常出现的项：collections-Counter-most-common"><a href="#计算某序列中最常出现的项：collections-Counter-most-common" class="headerlink" title="计算某序列中最常出现的项：collections.Counter.most_common"></a>计算某序列中最常出现的项：<strong>collections.Counter.most_common</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">words = <span class="string">'hello world world, and hello you and me and bla bla, gds'</span>.split()</div><div class="line">word_counts = Counter(words)</div><div class="line">top_three = word_counts.most_common(<span class="number">3</span>)</div><div class="line">word_counts[<span class="string">'world'</span>]</div><div class="line">word_counts.update(morewords)</div></pre></td></tr></table></figure>
+<p>Counter 支持算数运算：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = Counter(words)</div><div class="line">b = Counter(morewords)</div><div class="line"></div><div class="line">c = a + b</div><div class="line">c = a - b</div></pre></td></tr></table></figure></p>
+<h3 id="对一个列表中的字典进行排序：用到operator-itemgetter"><a href="#对一个列表中的字典进行排序：用到operator-itemgetter" class="headerlink" title="对一个列表中的字典进行排序：用到operator.itemgetter"></a>对一个列表中的字典进行排序：用到<strong>operator.itemgetter</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rows = [&#123;<span class="string">'fname'</span>: <span class="string">'Hu'</span>, <span class="string">'lname'</span>: <span class="string">'dd'</span>, <span class="string">'uid'</span>: <span class="number">001</span>&#125;, &#123;...&#125;, &#123;...&#125;, ...]</div><div class="line">rows_by_lfname = sorted(rows, key=itemgetter(<span class="string">'lname'</span>, <span class="string">'fname'</span>))</div><div class="line"></div><div class="line">rows_by_lfname = sorted(rows, key=<span class="keyword">lambda</span> r: (r[<span class="string">'lname'</span>], r[<span class="string">'fname'</span>]))</div></pre></td></tr></table></figure>
+<h3 id="根据对象的某属性对对象进行排序：用到operator-attrgetter"><a href="#根据对象的某属性对对象进行排序：用到operator-attrgetter" class="headerlink" title="根据对象的某属性对对象进行排序：用到operator.attrgetter"></a>根据对象的某属性对对象进行排序：用到<strong>operator.attrgetter</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> attrgetter</div><div class="line">sorted(users, key=attrgetter(<span class="string">'user_id'</span>))</div></pre></td></tr></table></figure>
+<h3 id="根据某属性进行Group：-用到-itertools-groupby"><a href="#根据某属性进行Group：-用到-itertools-groupby" class="headerlink" title="根据某属性进行Group： 用到 itertools.groupby"></a>根据某属性进行Group： 用到 <strong>itertools.groupby</strong></h3><p><code>groupby(rows, key=itemgetter(&#39;a_filed&#39;)</code></p>
+<h3 id="过滤序列的元素"><a href="#过滤序列的元素" class="headerlink" title="过滤序列的元素"></a>过滤序列的元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[n for n in mylist if n&gt;0]</div><div class="line">(n for n in mylist if n&gt;0)</div><div class="line">filter(lambda x: x&gt;0, a_list)</div><div class="line">[n if n&gt;0 else 0 for n in mylist]</div></pre></td></tr></table></figure>
+<p><strong>itertools.compress</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from itertools import compress</div><div class="line">more5 = [n&gt;5 for n in counts]</div><div class="line">list(compress(addressses, more5))</div></pre></td></tr></table></figure>
+<p>compress 第一个参数是第二个参数序列对应的布尔值的序列。</p>
+<h3 id="collections-namedtuple"><a href="#collections-namedtuple" class="headerlink" title="collections.namedtuple"></a><strong>collections.namedtuple</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from collections import namedtuple</div><div class="line">Subscriber = namedtuple(&apos;Subscriber&apos;, [&apos;addr&apos;, &apos;joined&apos;])</div><div class="line">sub = Subscriber(&apos;jonesy@example.com&apos;, &apos;2014-10-19&apos;)</div><div class="line">print(sub.addr)</div><div class="line">print(sub.joined)</div></pre></td></tr></table></figure>
+<h3 id="collections-ChainMap"><a href="#collections-ChainMap" class="headerlink" title="collections.ChainMap"></a><strong>collections.ChainMap</strong></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/06/29/Python_cookbook/" data-id="cjfktb0bb000e0677yxy5qtmp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/28/git相关/" class="article-date">
+  <time datetime="2017-06-28T08:05:43.000Z" itemprop="datePublished">2017-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/28/git相关/">git 相关技巧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>当执行 <code>pull</code> 操作时想要保留本地更改：<ul>
+<li>先用 <code>git stash</code> 将本地的所有修改就都被暂时存储起来 stash 藏匿，</li>
+<li>可通过 <code>git stash list</code>查看保存的信息</li>
+<li>暂存起来之后就可以通过 <code>git pull</code>来进行更新</li>
+<li>还原暂存的内容：<code>git stash pop stash@{0}</code></li>
+<li>如出现合并冲突，进行手动解决</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/06/28/git相关/" data-id="cjfktb0bl000m0677pspjmtyq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-奇怪的-+=" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/26/奇怪的-+=/" class="article-date">
+  <time datetime="2017-05-26T03:11:00.000Z" itemprop="datePublished">2017-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/26/奇怪的-+=/">奇怪的 +=</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看《Fluent Python》看到这一部分，感觉很有收获。分享一下。</p>
+<hr>
+<h3 id="引例"><a href="#引例" class="headerlink" title="引例"></a>引例</h3><p>判断一下下面Python程序语句的运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">t = (1, 2, [30, 40])</div><div class="line">t[2] += [50, 60]</div></pre></td></tr></table></figure></p>
+<p>选项：</p>
+<p>a&gt;. t 变为 (1, 2, [30, 40, 50, 60])<br>b&gt;. TypeError: ‘tuple’ object does not support item assignment<br>c&gt;. 没有正确答案<br>d&gt;. a, b 都是</p>
+<p>你的选项是什么？</p>
+<p>正确答案: d&gt;</p>
+<hr>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>一个很有用的网站：<a href="http://www.pythontutor.com" target="_blank" rel="external">http://www.pythontutor.com</a> 可以一步步地显示程序的运行过程：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3340699-240f9c240be0b191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/3340699-76f5e9333cd43dcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一个有用的包：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3340699-96aa27030dd9695d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运算过程"></p>
+<p><code>s[a] += b</code>的过程分析：</p>
+<ul>
+<li>将 s[a] 的值放到栈顶TOS</li>
+<li>执行<code>TOS += b</code>， 如果TOS指向的是一个可变对象，则可以成功执行</li>
+<li>将TOS赋值给 s[a]: <code>s[a] = TOS</code>， 如果s 是不可变的，操作会失败。</li>
+</ul>
+<p>所以，开始的问题就是这么个流程：</p>
+<ul>
+<li>将 t[2] 即： [30, 40] 放到栈顶，作为TOS</li>
+<li>执行 <code>[30, 40] += [50, 60]</code></li>
+<li>将TOS(此时即[30, 40, 50, 60])赋值回 t[2] 时，因为 t 是 tuple , 是不可变的，操作失败，抛出异常</li>
+</ul>
+<hr>
+<h3 id="收获："><a href="#收获：" class="headerlink" title="收获："></a>收获：</h3><ul>
+<li>尽量不要在 tuple 中存放可变对象</li>
+<li><code>+=</code>, <code>*=</code>等操作不是原子操作</li>
+<li><code>dis</code> 模块查看Python字节码详细执行过程</li>
+<li><a href="http://www.pythontutor.com" target="_blank" rel="external">http://www.pythontutor.com</a> 可以一步步地显示程序的运行过程</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/05/26/奇怪的-+=/" data-id="cjfktb0bq000r0677s8mhn70h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-教务处考试系统自动答题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/18/教务处考试系统自动答题/" class="article-date">
+  <time datetime="2017-05-18T03:07:00.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/18/教务处考试系统自动答题/">教务处考试系统自动答题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-03274c7a781a330d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>学校要求登录教务处网站做一个测试题，我做了看了看，30分钟300道题，240分几个，题量不少，题还不好做。研究了一下发现原来在网站上就有题库的，但是一道题只有6s 的时间作答，边查边做肯定是时间不够的。灵光一闪，人生苦短，我用Python，写个自动答题的机器人吧。    </p>
+<hr>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ul>
+<li>爬取题库并存储到数据库</li>
+<li>模拟登录教务系统</li>
+<li>进入答题页面，遍历题目，匹配数据库中记录，给出答案</li>
+<li>提交数据</li>
+</ul>
+<h3 id="用到的工具："><a href="#用到的工具：" class="headerlink" title="用到的工具："></a>用到的工具：</h3><ul>
+<li>Python</li>
+<li>requests</li>
+<li>BeautifulSoup</li>
+<li>mongodb</li>
+</ul>
+<h3 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h3><ul>
+<li><h4 id="模拟登录"><a href="#模拟登录" class="headerlink" title="模拟登录"></a>模拟登录</h4>以前研究过学校教务系统的登录，现在终于在正事上排上用场了。学校教务系统的登录还算简单，没有验证码，唯一一点儿小障碍是登录表单会有几个隐藏字段，有个字段会动态改变，解决就是先GET一下登录网址，获取这几个字段的值，再随表单进行POST。代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line">from bs4 import BeautifulSoup</div><div class="line">import os</div><div class="line"></div><div class="line">headers = &#123;</div><div class="line">    &apos;Connection&apos;: &apos;keep-alive&apos;,</div><div class="line">    &apos;Cache-Control&apos;: &apos;max-age=0&apos;,</div><div class="line">    &apos;Upgrade-Insecure-Requests&apos;: &apos;1&apos;,</div><div class="line">    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36&apos;,</div><div class="line">    &apos;Accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</div><div class="line">    &apos;Accept-Encoding&apos;: &apos;gzip, deflate, sdch&apos;,</div><div class="line">    &apos;Accept-Language&apos;: &apos;zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">session = requests.session()</div><div class="line"></div><div class="line"># 先GET一下登录页面获得隐藏字段</div><div class="line">resp = session.get(&quot;http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2F202.194.188.19%2Fcaslogin.jsp&quot;, headers=headers)</div><div class="line">bsObj = BeautifulSoup(resp.text, &quot;html.parser&quot;)     </div><div class="line">lt = bsObj.find(&apos;input&apos;, &#123;&apos;name&apos;:&apos;lt&apos;&#125;)[&apos;value&apos;]</div><div class="line">execution = bsObj.find(&apos;input&apos;, &#123;&apos;name&apos;:&apos;execution&apos;&#125;)[&apos;value&apos;]</div><div class="line"></div><div class="line">params = &#123;</div><div class="line">    &apos;username&apos;: os.environ.get(&apos;STU_ID&apos;),   # 环境变量获取的学号</div><div class="line">    &apos;password&apos;: os.environ.get(&apos;STU_PWD&apos;), # 环境变量获取的密码</div><div class="line">    &apos;lt&apos;: lt,</div><div class="line">    &apos;execution&apos;: execution,</div><div class="line">    &apos;_eventId&apos;: &apos;submit&apos;,</div><div class="line">    &apos;rmShown&apos;: &apos;1&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># post 数据登录成功</div><div class="line">resp = session.post(&quot;http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2F202.194.188.19%2Fcaslogin.jsp&quot;, data=params, headers=headers)</div></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="题库爬取"><a href="#题库爬取" class="headerlink" title="题库爬取"></a>题库爬取</h4>用了Python的requests库进行页面的爬取，励志小哥写的这个库的确好用，特别是运用 <code>requests.session()</code>之后，处理好登录之后，再也不用管那些烦人的cookie 啥的了，用了BeautifulSoup来进行页面解析，用起来也是很顺手。开始有乱码，一看网页编码是gb2312的，稍微设置一下也OK了。<br>内容有了，当然要存储起来了，不然每次答题都有爬题库多麻烦，何况是些千年不变的东西。开始用的是MySQL，然而编码问题让人头疼，设置编码为gb2312，存储的时候说有内容 gb2312 又解析不了，于是程序就挂了。搞了很长时间也没搞定，还把我的 Sequel Pro 给搞挂了，f***!<br>静下心来一想，题库只要写数据库写一遍就OK了，但是答题的时候会频繁地查询数据库，用nosql数据库多好。题目做键，答案做值就行了。看过redis，但毕竟是内存型数据库，虽然快，但是还要做持久化，直接用mongodb吧，还没看过，刚好学习了，边学边用。<br>爬取并存储题库部分的代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">tikubhs = [8692, 10988, 10989, 10990, 10991, 10992, 10993, 10994, 10995]  # 每一类题库的编号</div><div class="line">pages = [153, 77, 13, 18, 22, 27, 10, 39, 12]  # 每一个题库的题目页数</div><div class="line"></div><div class="line">from pymongo import MongoClient</div><div class="line">client = MongoClient()</div><div class="line">db = client.shitiDB    # 数据库名 shitiDB</div><div class="line"></div><div class="line">shiti_table = db.shitis    # 表名 shitis</div><div class="line"></div><div class="line">for tikubh, page_range in zip(tikubhs, pages):</div><div class="line">    for page in range(1, page_range+1):</div><div class="line">        url = &quot;http://aqjy.qfnu.edu.cn/redir.php?catalog_id=6&amp;cmd=learning&amp;tikubh=&quot;+str(tikubh)+&quot;&amp;page=&quot;+str(page)</div><div class="line">        resp = session.get(url)</div><div class="line">        resp.encoding = &apos;gb2312&apos;</div><div class="line">        bsObj = BeautifulSoup(resp.text, &quot;html.parser&quot;)</div><div class="line">        shitis = bsObj.find_all(&apos;div&apos;, class_=&apos;shiti&apos;)</div><div class="line">        daans = bsObj.find_all(&apos;span&apos;, style=&apos;color:#666666&apos;)</div><div class="line">        values = []</div><div class="line">        for timu_str, daan_str in zip(shitis, daans):</div><div class="line">            shitibh = int(timu_str.h3.text[0:5])</div><div class="line">            timu = timu_str.h3.text[6:]</div><div class="line">            daan = daan_str.text[daan_str.text.find(&apos;标准答案&apos;)+5:].strip(&apos; ）&apos;)</div><div class="line">            d = &#123;&apos;shitibh&apos;:shitibh, &apos;tikubh&apos;:tikubh, &apos;timu&apos;:timu, &apos;daan&apos;:daan&#125;</div><div class="line">            values.append(d)</div><div class="line">        new_result = shiti_table.insert_many(values)</div></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="模拟作答"><a href="#模拟作答" class="headerlink" title="模拟作答"></a>模拟作答</h4><p>这一部分是最关键的部分，再这上面的耗时比较多，大部分时间都在研究他的数据的提交流程。<br>题目是分页的，且选择页面或点击上下页的时候，地址栏的地址是不变的，说明分页是通过js实现的，而不是直接用的链接：<br><img src="http://upload-images.jianshu.io/upload_images/3340699-d4cc03a95b9405f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>研究得知，上下页和页面选择都是通过post数据标志到本页面实现的<br><img src="http://upload-images.jianshu.io/upload_images/3340699-47cb78e8acd6aa51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>搞懂了这些数据的意义和他们之间的关系，用代码模拟出来就OK了，当作到最后一页完成的时候，把<code>tijiao</code>标志也设为1，POST到原URL就完成了作答，这部分代码就不贴了，文末有GitHub链接。</p>
+</li>
+<li><h4 id="可能的改进"><a href="#可能的改进" class="headerlink" title="可能的改进"></a>可能的改进</h4><ul>
+<li>写好之后许多同学找我给答题，看看如果多的话用flask搭成个web服务。高效还不用担心我泄露你们的密码了。</li>
+<li>爬题库的时候想的是爬答案的文本，爬成了ABCD的选项，多亏选项和答案文本的对应关系没变，但也造成个别问题答案会有错误，致使我给答题的同学分数基本都在297-299之间（满分300分），少有300分的同学。本来想改来着，转念一想都满分也不太好，有点误差也好，可能这部分不会改了，感兴趣的可以自己改改看。</li>
+</ul>
+</li>
+</ul>
+<p>ps: 本校的可以直接搭好拿来用就可以了，其他同学如有类似需求，这个系统是某公司开发的，好多学校都在用，folk一份改改应该也没问题。 <a href="https://github.com/hukaixuan/spider-school" target="_blank" rel="external">戳到github吧</a>，欢迎 star、folk。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/05/18/教务处考试系统自动答题/" data-id="cjfktb0by000v0677mcxnldr7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Flask-RESTful-设计-RESTful-API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/使用Flask-RESTful-设计-RESTful-API/" class="article-date">
+  <time datetime="2017-05-09T12:55:00.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/09/使用Flask-RESTful-设计-RESTful-API/">使用Flask-RESTful-设计-RESTful-API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-2d0059d7e5c36496.gif?imageMogr2/auto-orient/strip" alt="restful">Flask-RESTful 提供了一个Resource基础类，能够定义一个给定URL的一个或者多个HTTP方法。</p>
+<hr>
+<p>上一篇TODO list应用改用Flask_RESTful的完整示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line">from flask import Flask, abort, url_for, make_response, jsonify</div><div class="line">from flask_restful import Resource, Api, reqparse, fields, marshal</div><div class="line">from flask_httpauth import HTTPBasicAuth</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">api = Api(app)</div><div class="line">auth = HTTPBasicAuth()</div><div class="line"></div><div class="line">tasks = [</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:1,</div><div class="line">		&apos;title&apos;:&apos;白鹿原&apos;,</div><div class="line">		&apos;description&apos;:&apos;这是一定死啦塞啊；阿凯骄傲灵丹安矿鉴定暗访东方三；啊反馈；安静快撒娇扥卡机&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:2,</div><div class="line">		&apos;title&apos;:&apos;嫌疑人&apos;,</div><div class="line">		&apos;description&apos;:&apos;as大肯借；额看课文静安寺放大反抗航将；来否；付定金奥兰多 看企鹅长恨东澳岛啊；伐开森&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;</div><div class="line">]</div><div class="line"></div><div class="line">task_fields = &#123;</div><div class="line">	&apos;title&apos;: fields.String,</div><div class="line">	&apos;description&apos;: fields.String,</div><div class="line">	&apos;done&apos;: fields.Boolean,</div><div class="line">	&apos;uri&apos;: fields.Url(&apos;task&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class TaskListAPI(Resource):</div><div class="line">	decorators = [auth.login_required]</div><div class="line">	def __init__(self):</div><div class="line">		self.reqparse = reqparse.RequestParser()</div><div class="line">		self.reqparse.add_argument(&apos;title&apos;, type=str, required=True,</div><div class="line">			help=&apos;No task title provided&apos;, location=&apos;json&apos;)</div><div class="line">		self.reqparse.add_argument(&apos;description&apos;, type=str, default=&quot;&quot;, </div><div class="line">			location=&apos;json&apos;)</div><div class="line">		self.reqparse.add_argument(&apos;done&apos;, type=bool, location=&apos;json&apos;)</div><div class="line">		super(TaskListAPI, self).__init__()</div><div class="line"></div><div class="line">	def get(self):</div><div class="line">		return jsonify(list(map(marshal, tasks, [task_fields for i in range(len(tasks))])))</div><div class="line"></div><div class="line">	def post(self):</div><div class="line">		task = &#123;&#125;</div><div class="line">		args = self.reqparse.parse_args()</div><div class="line">		task[&apos;id&apos;] = tasks[-1][&apos;id&apos;]+1</div><div class="line">		for k, v in args.items():</div><div class="line">			if v != None:</div><div class="line">				task[k] = v</div><div class="line">		tasks.append(task)</div><div class="line">		return &#123;&apos;task&apos;:task&#125;, 201</div><div class="line"></div><div class="line">class TaskAPI(Resource):</div><div class="line">	decorators = [auth.login_required]</div><div class="line">	def __init__(self):</div><div class="line">		self.reqparse = reqparse.RequestParser()</div><div class="line">		self.reqparse.add_argument(&apos;title&apos;, type=str, location=&apos;json&apos;)</div><div class="line">		self.reqparse.add_argument(&apos;description&apos;, type=str, location=&apos;json&apos;)</div><div class="line">		self.reqparse.add_argument(&apos;done&apos;, type=bool, location=&apos;json&apos;)</div><div class="line">		super(TaskAPI, self).__init__()</div><div class="line"></div><div class="line">	def get(self, id):</div><div class="line">		task = list(filter(lambda x: x[&apos;id&apos;]==id, tasks))</div><div class="line">		if len(task)==0:</div><div class="line">			abort(404)</div><div class="line">		task = task[0]</div><div class="line">		return &#123;&apos;task&apos;: marshal(task, task_fields)&#125;</div><div class="line"></div><div class="line">	def put(self, id):</div><div class="line">		task = list(filter(lambda t: t[&apos;id&apos;] == id, tasks))</div><div class="line">		if len(task) == 0:</div><div class="line">			abort(404)</div><div class="line">		task = task[0]</div><div class="line">		args = self.reqparse.parse_args()</div><div class="line">		for k, v in args.items():</div><div class="line">			if v != None:</div><div class="line">				task[k] = v</div><div class="line">		# return jsonify(task=make_public_task(task))</div><div class="line">		return &#123;&apos;task&apos;: marshal(task, task_fields)&#125;</div><div class="line"></div><div class="line">	def delete(self, id):</div><div class="line">		task = list(filter(lambda x: x[&apos;id&apos;]==id, tasks))</div><div class="line">		if len(task)==0:</div><div class="line">			abort(404)</div><div class="line">		task = task[0]</div><div class="line">		tasks.remove(task)</div><div class="line">		return &#123;&apos;result&apos;:True&#125;</div><div class="line"></div><div class="line">api.add_resource(TaskListAPI, &apos;/todo/api/v1.0/tasks&apos;, endpoint=&apos;tasks&apos;)</div><div class="line">api.add_resource(TaskAPI, &apos;/todo/api/v1.0/tasks/&lt;int:id&gt;&apos;, endpoint=&apos;task&apos;)</div><div class="line"></div><div class="line"></div><div class="line">def make_public_task(task):</div><div class="line">	new_tasks = &#123;&#125;</div><div class="line">	for field in task:</div><div class="line">		if field==&apos;id&apos;:</div><div class="line">			new_tasks[&apos;uri&apos;] = url_for(&apos;task&apos;, id=task[&apos;id&apos;], _external=True)</div><div class="line">		else:</div><div class="line">			new_tasks[field] = task[field]</div><div class="line">	return new_tasks</div><div class="line"></div><div class="line"></div><div class="line">@auth.get_password</div><div class="line">def get_password(username):</div><div class="line">	if username==&apos;hukx&apos;:</div><div class="line">		return &apos;123456&apos;</div><div class="line">	return None</div><div class="line"></div><div class="line">@auth.error_handler</div><div class="line">def unauthorized():</div><div class="line">	# return make_response(jsonify(error=&apos;Unauthorized access&apos;), 401)</div><div class="line">	return make_response(jsonify(error=&apos;Unauthorized access&apos;), 403)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">	app.run(debug=True)</div></pre></td></tr></table></figure></p>
+<p>原文链接：<a href="http://www.pythondoc.com/flask-restful/second.html" target="_blank" rel="external">http://www.pythondoc.com/flask-restful/second.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/05/09/使用Flask-RESTful-设计-RESTful-API/" data-id="cjfktb0bi000k0677o2k50lo3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RESTful/">RESTful</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-RESTful-API--的Flask手动实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/RESTful-API--的Flask手动实现/" class="article-date">
+  <time datetime="2017-05-09T08:02:00.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/09/RESTful-API--的Flask手动实现/">RESTful API的Flask手动实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-9825d956da07f0b6.gif?imageMogr2/auto-orient/strip" alt="">RESTful web services 概念的核心就是“资源”。资源可以用URI来表示。客户端使用HTTP协议定义的方法来发送请求到这些URIs，导致这些被访问的资源状态改变。</p>
+<hr>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
+<li>GET  <a href="http://example.com/api/orders" target="_blank" rel="external">http://example.com/api/orders</a>  获取资源的信息</li>
+<li>GET  <a href="http://example.com/api/orders/123" target="_blank" rel="external">http://example.com/api/orders/123</a> 获取某个特定资源的信息</li>
+<li>POST  <a href="http://example.com/api/orders" target="_blank" rel="external">http://example.com/api/orders</a> 创建新资源 </li>
+<li>PUT <a href="http://example.com/api/orders/123" target="_blank" rel="external">http://example.com/api/orders/123</a> 更新资源</li>
+<li>DELETE http:/example.com/api/orders/123 删除资源</li>
+</ul>
+<hr>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>创建一个TODO list应用，设计URL模式为： <code>http://[hostname]/todo/api/v1.0/</code></p>
+<table>
+<thead>
+<tr>
+<th>HTTP方法</th>
+<th>URL</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks</a></td>
+<td>检索任务列表</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>检索某个任务</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks</a></td>
+<td>创建新任务</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>更新任务</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>删除任务</td>
+</tr>
+</tbody>
+</table>
+<p>任务属性：id(数字)、title(字符串)、description(具体描述、文本)、done(任务完成状态、布尔)</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">from flask import Flask, jsonify, abort, make_response, request, url_for</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">tasks = [</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:1,</div><div class="line">		&apos;title&apos;:&apos;白鹿原&apos;,</div><div class="line">		&apos;description&apos;:&apos;这是一定死啦塞啊；阿凯骄傲灵丹安矿鉴定暗访东方三；啊反馈；安静快撒娇扥卡机&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:2,</div><div class="line">		&apos;title&apos;:&apos;嫌疑人&apos;,</div><div class="line">		&apos;description&apos;:&apos;as大肯借；额看课文静安寺放大反抗航将；来否；付定金奥兰多 看企鹅长恨东澳岛啊；伐开森&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;</div><div class="line">]</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def index():</div><div class="line">	return &apos;Hello world&apos;</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks&apos;, methods=[&apos;GET&apos;])</div><div class="line">def get_tasks():</div><div class="line">	return jsonify(&#123;&apos;tasks&apos;:list(map(make_public_task, tasks))&#125;)</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;GET&apos;])</div><div class="line">def get_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	return jsonify(task=make_public_task(task[0]))</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks&apos;, methods=[&apos;POST&apos;])</div><div class="line">def create_task():</div><div class="line">	if not request.json or &apos;title&apos; not in request.json:</div><div class="line">		abort(400)</div><div class="line">	task = &#123;</div><div class="line">		&apos;id&apos;:tasks[-1][&apos;id&apos;]+1,</div><div class="line">		&apos;title&apos;: request.json[&apos;title&apos;],</div><div class="line">		&apos;description&apos;:request.json.get(&apos;description&apos;,&apos;&apos;),</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;</div><div class="line">	tasks.append(task)</div><div class="line">	return jsonify(task=task), 201</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;PUT&apos;])</div><div class="line">def update_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	if not request.json:</div><div class="line">		abort(400)</div><div class="line">	# 验证各个字段...</div><div class="line">	if &apos;title&apos; in request.json and type(request.json[&apos;title&apos;])!= str:</div><div class="line">		abort(400)</div><div class="line">	if &apos;description&apos; in request.json and type(request.json[&apos;description&apos;]) is not str:</div><div class="line">		abort(400)</div><div class="line">	if &apos;done&apos; in request.json and type(request.json[&apos;done&apos;]) is not bool:</div><div class="line">		abort(400)</div><div class="line">	task[0][&apos;title&apos;] = request.json.get(&apos;title&apos;, task[0][&apos;title&apos;])</div><div class="line">	task[0][&apos;description&apos;] = request.json.get(&apos;description&apos;, task[0][&apos;description&apos;])</div><div class="line">	task[0][&apos;done&apos;] = request.json.get(&apos;done&apos;, task[0][&apos;done&apos;])</div><div class="line">	return jsonify(task=task[0])</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;DELETE&apos;])</div><div class="line">def delete_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	tasks.remove(task[0])</div><div class="line">	return jsonify(result=True)</div><div class="line"></div><div class="line">def make_public_task(task):</div><div class="line">	# print(&apos;😲&apos;,task)</div><div class="line">	new_tasks = &#123;&#125;</div><div class="line">	for field in task:</div><div class="line">		if field==&apos;id&apos;:</div><div class="line">			new_tasks[&apos;uri&apos;] = url_for(&apos;get_task&apos;, task_id=task[&apos;id&apos;], _external=True)</div><div class="line">		else:</div><div class="line">			new_tasks[field] = task[field]</div><div class="line">	return new_tasks</div><div class="line"></div><div class="line"></div><div class="line">@app.errorhandler(404)</div><div class="line">def not_found(error):</div><div class="line">	return make_response(jsonify(error=&apos;Not Found&apos;), 404)</div><div class="line"></div><div class="line">@app.errorhandler(400)</div><div class="line">def bad_request(error):</div><div class="line">	return make_response(jsonify(error=&apos;Bad Request&apos;), 400)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">	app.run(debug=True)</div></pre></td></tr></table></figure></p>
+<p>原文链接：<a href="http://www.pythondoc.com/flask-restful/first.html" target="_blank" rel="external">http://www.pythondoc.com/flask-restful/first.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/05/09/RESTful-API--的Flask手动实现/" data-id="cjfktb0bd000g0677t9304nap" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RESTful/">RESTful</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《redis实战》笔记——-数据结构及其命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/" class="article-date">
+  <time datetime="2017-04-24T02:31:00.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/">redis 数据结构及其命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-7d580a8ccce7de87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><hr>
+<p> redis 可以存储键与 5 种不同数据结构类型之间的映射，分别为 STRING(字符串), LIST(列表), SET(集合), HASH(散列), ZSET(有序集合)，有些命令是对于这些数据结构是通用的，而有些只是对于特定数据结构的。</p>
+<hr>
+<h4 id="1-STRING"><a href="#1-STRING" class="headerlink" title="1. STRING"></a>1. STRING</h4><ul>
+<li><p>字符串可以存储三种类型的值：</p>
+<ul>
+<li>字节串(byte string)       </li>
+<li>整数</li>
+<li>浮点数</li>
+</ul>
+</li>
+<li><p>如果一个存储在redis字符串中的值可以被看做十进制整数或者浮点数，那么redis便允许对该值进行如下增减操作；如果用户对一个不存在的建或一个保存了空串的键执行自增或自减操作，会被视为0处理；如果这个值不能解释成一个整数或者浮点数，执行以下增减操作会报错（Python调用之前先<code>import redis</code>, <code>conn = redis.Redis()</code>）：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>incr</td>
+<td><code>incr key</code> 将键存储的值加1</td>
+<td><code>conn.incr(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>decr</td>
+<td><code>decr key</code> 将键存储的值减1</td>
+<td><code>conn.decr(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>incrby</td>
+<td><code>incrby key amount</code> 将键存储的值加整数amount</td>
+<td><code>conn.incr(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>decrby</td>
+<td><code>decrby key amount</code> 将键存储的值减整数amount</td>
+<td><code>conn.decr(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>incrbyfloat</td>
+<td><code>incrbyfloat key amount</code> 将键存储的值加上浮点数 amount</td>
+<td><code>conn.incrbyfloat(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>没有decrbyfloat</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>处理子串和二进制位的命令：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>append</td>
+<td><code>append key value</code>将值value追加到给定的键 key当前存储的值的末尾</td>
+<td><code>conn.append(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>getrange(2.6之前为substr)</td>
+<td><code>getrange key start end</code> 获取一个由偏移量start至end范围内所有字符组成的子串，<strong>包括start和end在内</strong>（索引以0开始）</td>
+<td><code>conn.getrange(&#39;key&#39;, start, end)</code></td>
+</tr>
+<tr>
+<td>setrange</td>
+<td><code>setrange key offset value</code> 将从偏移offset开始的子串设置为给定值</td>
+<td><code>conn.setrange(&#39;key&#39;, offset, &#39;new-value&#39;)</code></td>
+</tr>
+<tr>
+<td>位操作</td>
+<td>getbit、setbit、bitcount、bitop</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="2-LIST"><a href="#2-LIST" class="headerlink" title="2. LIST"></a>2. LIST</h4><ul>
+<li><p>redis 的列表允许用户从序列的两端push或者pop元素, 获取列表元素，以及执行各种常见的列表操作。还可以用来存储任务信息、最近浏览过的文章或者常用联系人信息。</p>
+</li>
+<li><p>常用列表命令如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和概述</th>
+<th>python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rpush</td>
+<td><code>rpush key vlaue [value ...]</code> 将一个或多个值push进列表的右端</td>
+<td><code>conn.rpush(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>lpush</td>
+<td><code>lpush key value [value ...]</code>…左端</td>
+<td><code>conn.lpush(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>rpop</td>
+<td><code>rpop key</code> 移除并返回列表最右端的元素</td>
+<td><code>conn.rpop(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>lpop</td>
+<td><code>lpop key</code> 移除并返回列表最左端的元素</td>
+<td><code>conn.lpop(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>lindex</td>
+<td><code>lindex key offset</code> 返回列表中偏移量为offset的元素</td>
+<td><code>conn.index(&#39;key&#39;, offset)</code></td>
+</tr>
+<tr>
+<td>lrange</td>
+<td><code>lrange key start stop</code> 返回列表中从start偏移量到end偏移量范围内的所有元素，<strong>包括start和end</strong></td>
+<td><code>conn.lrange(&#39;key&#39;, start, stop)</code></td>
+</tr>
+<tr>
+<td>ltrim</td>
+<td><code>ltrim key start stop</code> 对列表进行修剪，只保留从start到end(<strong>包括start和end</strong>)之间的元素</td>
+<td><code>conn.ltrim(&#39;key&#39;, start, stop)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>阻塞式pop及列表之间移动元素：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blpop</td>
+<td><code>blpop key[key...] timeout</code> 从第一个非空列表中弹出位于最左端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>conn.blpop(keys, timeout)</code></td>
+</tr>
+<tr>
+<td>brpop</td>
+<td><code>brpop key[key...] timeout</code> 从第一个非空列表中弹出位于最右端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>conn.brpop(keys, timeout)</code></td>
+</tr>
+<tr>
+<td>rpoplpush</td>
+<td><code>rpoplpush source-key dest-key</code> 从source-key列表中pop出位于最右端的元素，然后将这个元素push进dest-key列表的最左端，并向用户返回这个元素</td>
+<td><code>rpoplpush(source-key, dest-key)</code></td>
+</tr>
+<tr>
+<td>brpoplpush</td>
+<td><code>brpoplpush source-key dest-key timeout</code> 从source-key列表中弹出位于最右端的元素，然后将这个元素推入dest-key列表的最左端，并向用户返回这个元素：如果souce-key为空，那么在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>brpoplpush(source-key, dest-key, timeout)</code></td>
+</tr>
+</tbody>
+</table>
+<p>方便理解阻塞式(block), 演示如下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3340699-556d0ea1db06dcaa.gif?imageMogr2/auto-orient/strip" alt="阻塞式演示，左为redis-cli，右为python命令行"></p>
+<hr>
+<h4 id="3-SET"><a href="#3-SET" class="headerlink" title="3. SET"></a>3. SET</h4><ul>
+<li><p>Redis 的集合操作以无序的方式来存储多个<strong>各不相同</strong>的元素，用户可以快速地对集合必行添加元素操作，移除元素操作以及检查一个元素是否存在于集合里。</p>
+</li>
+<li><p>常用集合命令</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sadd</td>
+<td><code>sadd key item [item...]</code> 添加</td>
+<td><code>conn.sadd(key, *items)</code></td>
+</tr>
+<tr>
+<td>srem</td>
+<td><code>srem key itme [...]</code> 删除</td>
+<td><code>conn.srem(key, *items)</code></td>
+</tr>
+<tr>
+<td>sismember</td>
+<td><code>sismember</code> 检查元素item是否存在于集合key里</td>
+<td><code>conn.sismember(key, item)</code></td>
+</tr>
+<tr>
+<td>scard</td>
+<td><code>scard key</code> 返回集合包含的元素的数量</td>
+<td><code>conn.scard(key)</code></td>
+</tr>
+<tr>
+<td>semebers</td>
+<td><code>smembers key</code> 返回集合中所包含的所有元素</td>
+<td><code>conn.smembers(key)</code></td>
+</tr>
+<tr>
+<td>srandmember</td>
+<td><code>srandmember key [count]</code>从集合里面随机地返回一个或多个元素，当count为正时，命令返回的随机元素不会重复，为负数的时候可能会重复</td>
+<td><code>conn.srandmember(key, count=None)</code></td>
+</tr>
+<tr>
+<td>spop</td>
+<td><code>spop key</code> <strong>随机</strong>地移除集合中的一个元素，并返回被移除的元素</td>
+<td><code>conn.spop(key)</code></td>
+</tr>
+<tr>
+<td>smove</td>
+<td><code>smove source-key dest-key item</code>如果集合source-key包含元素item，那么从集合source-key中移除元素item，并将元素item添加到集合dest-key中；如果item被成功移除，那么命令返回1，否则返回0</td>
+<td><code>conn.smove(source-key dest-key item)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>用于组合和处理多个集合的redis命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sdiff</td>
+<td><code>sdiff key [keys...]</code>返回那些存在于第一个集合、但不存在与其他集合中的元素（<strong>差</strong>）</td>
+<td><code>conn.sdiff(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sdiffstore</td>
+<td><code>sdiffstore dest-key key [keys...]</code>将那些存在于第一个集合但并不存在与其他集合中的元素存储到dest-key键里面</td>
+<td><code>conn.sdiffstore(dest-key, key, *keys)</code></td>
+</tr>
+<tr>
+<td>sinter</td>
+<td><code>sinter key [keys...]</code>返回那些同时存在于所有集合中的元素（<strong>交</strong>）</td>
+<td><code>conn.sinter(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sinterstore</td>
+<td><code>sinterstore dest-key key [keys...]</code>交&amp;存储</td>
+<td><code>conn.sinterstore(dest-key, key, *keys)</code></td>
+</tr>
+<tr>
+<td>sunion</td>
+<td><code>sunion key [keys...]</code> <strong>并</strong></td>
+<td><code>conn.sunion(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sunionstore</td>
+<td><code>sunionstore dest-key key [keys...]</code> 并&amp;存储</td>
+<td><code>conn.sunionstore(dest-key, key, *keys)</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="4-HASH"><a href="#4-HASH" class="headerlink" title="4. HASH"></a>4. HASH</h4><ul>
+<li><p>Redis的散列可以让用户将多个键值对存储到一个Redis键里面。从功能上来说，Redis为散列值提供了一些与字符串值相同的特性，是的散列非常适用于将一些相关数据存储在一起。因此可以吧这种数据聚集看做是关系数据库中行，或者文档数据库中的文档。</p>
+</li>
+<li><p>用于添加和删除键值对的散列操作</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hmget</td>
+<td><code>hmget key-name key [keys...]</code> 从散列里面获取一个或者多个键的值</td>
+<td><code>hmget(key-name, key [keys...])</code></td>
+</tr>
+<tr>
+<td>hmset</td>
+<td><code>hmset key-name key value [keys values ...]</code>为散列里的一个或多个键设置值</td>
+<td><code>hmset(key-name, dict(key=value))</code></td>
+</tr>
+<tr>
+<td>hdel</td>
+<td><code>hdel key-name key [keys ...]</code>删除散列里面的一个或多个键值对，返回删除的数量</td>
+<td><code>conn.hdel(key-name, key, [keys...])</code></td>
+</tr>
+<tr>
+<td>hlen</td>
+<td><code>hlen key-name</code> 返回散列包含的键值对数量</td>
+<td><code>conn.hlen(key-name)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Redis 散列的更高级特性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexists</td>
+<td><code>hexists key-name key</code>检查给定键是否存在于散列中</td>
+<td><code>conn.hexists(&#39;key-name&#39;, &#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>hkeys</td>
+<td><code>hkeys key-name</code> 获取散列的所有键</td>
+<td><code>conn.hkeys(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hvals</td>
+<td><code>hvals key-name</code> 获取散列包含的所有值</td>
+<td><code>conn.hvals(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hgetall</td>
+<td><code>hgetall key-name</code> 获取散列包含的所有键值对</td>
+<td><code>conn.hgetall(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hincrby</td>
+<td><code>hincrby key-name key increment</code> 将键key保存的值加上整数increment, 对散列中一个不存在的键执行自增操作时会将键的值当做0来处理</td>
+<td><code>conn.hincrby(&#39;key-name&#39;, &#39;key&#39;, increment)</code></td>
+</tr>
+<tr>
+<td>hincrbyfloat</td>
+<td><code>hincrbyfloat key-name key increment</code> 将键key保存的值加上浮点数increment，若 不存在当做0来处理</td>
+<td><code>conn.hincrbyfloat(&#39;key-name&#39;, &#39;key&#39;, increment)</code></td>
+</tr>
+</tbody>
+</table>
+<p>-<code>hgetall</code>vs <code>hkeys&amp;hget</code> :  如果散列包含的值非常大，那么用户可以先使用<code>hkeys</code> 取出散列包含的所有键， 然后再使用 <code>hget</code>一个接一个地取出键的值，从而<strong>避免因为一次获取多个大体积的值而导致服务器阻塞</strong></p>
+<hr>
+<h4 id="5-ZSET"><a href="#5-ZSET" class="headerlink" title="5. ZSET"></a>5. ZSET</h4><ul>
+<li>与散列存储键值对类似，有序集合ZSET存储着成员(member)与其分值(score)之间的映射，并提供了分值处理命令，以及根据分值大小有序地获取(fetch) 或扫描(scan) 成员和分值的命令。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zadd</td>
+<td><code>zadd key-name score member [score member ...]</code> 将带有给点分值的成员添加到有序集合里面</td>
+<td><code>conn.zadd(&#39;key-name&#39;, &#39;member1&#39;, &#39;score1&#39;, &#39;member2&#39;, &#39;score2&#39;)</code> <strong>与redis标准的先输入score后输入member的做法相反</strong></td>
+</tr>
+<tr>
+<td>zrem</td>
+<td><code>zrem key-name member  [member...]</code> 从有序集合里面移除给定的成员，并返回被移除成员的数量</td>
+<td><code>conn.zrem(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zcard</td>
+<td><code>zcard key-name</code> 返回有序集合包含的成员数量</td>
+<td><code>conn.zcard(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>zincrby</td>
+<td><code>zincrby key-name increment member</code> 将member成员的分值加上increment</td>
+<td><code>conn.zincrby(&#39;key-name&#39;, &#39;member&#39;, increment)</code></td>
+</tr>
+<tr>
+<td>zcount</td>
+<td><code>zcount key-name min max</code> 返回分值介于min 和 max 之间的成员数量</td>
+<td><code>conn.zcount(&#39;key-name&#39;, min, max)</code> 获取成员的排名(以0开始)</td>
+</tr>
+<tr>
+<td>zrank</td>
+<td><code>zrank key-name member</code> 返回成员member 在有序集合中的排名</td>
+<td><code>conn.zrank(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zscore</td>
+<td><code>zscore key-name member</code> 返回成员member的分值</td>
+<td><code>conn.zscore(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zrange</td>
+<td><code>zrange key-name start stop [withscores]</code> 返回有序集合中排名介于start和stop之间的成员，如果给定了可选的withscore选项，那么命令会将成员的分值也一并返回</td>
+<td><code>conn.zrange(&#39;key-name&#39;, start, stop, withscores=True)</code></td>
+</tr>
+<tr>
+<td>zrangebyscore</td>
+<td><code>zrangebyscore key min max [withscores] [limit offset count]</code> 获取有序集合中分值介于min和max 之间的所有成员</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>有序集合的范围型数据获取、删除命令，并集交集命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逆序命令(从大到小)</td>
+<td><strong>zrevrank、zrevrange、zrevrangebyscore</strong></td>
+</tr>
+<tr>
+<td>删除操作</td>
+<td><strong>zremrangebyrank、zremrangebyscore</strong></td>
+</tr>
+<tr>
+<td>交并运算</td>
+<td>1. <strong>zinterstore:</strong><code>zinterstore dest-key key-count key [key ...] [weights weight [weight ...]] [aggregate sum、min、max]</code><br>2.<strong>zunionstore:</strong><code>zunionstore dest-key key-count key [key ...] [weights weight [weight ...]] [aggregate sum、min、max]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>交集和并集运算默认使用聚合函数sum，可以通过 aggregate= sum/min/max 来指定三种不同的聚合函数，通过可选的weights参数来决定个子集合的权重。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/04/24/《redis实战》笔记——-数据结构及其命令/" data-id="cjfktb0bf000i0677lyt3xv6s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/https/" class="article-date">
+  <time datetime="2017-04-24T00:31:00.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/24/https/">HTTPS 配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">https://certbot.eff.org/#ubuntutrusty-nginx</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/04/24/https/" data-id="cjfktb0ba000d0677sij3m6j0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTPS/">HTTPS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于apt-get-remove-与-apt-get-purge" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/16/关于apt-get-remove-与-apt-get-purge/" class="article-date">
+  <time datetime="2017-04-16T13:01:00.000Z" itemprop="datePublished">2017-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/16/关于apt-get-remove-与-apt-get-purge/">关于apt-get remove 与apt-get purge</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在Ubuntu服务器上安装supervisor，部署没成功想卸载重来，<code>sudo apt-get remove supervisor</code>  后发现配置文件还在，便手动删除了配置文件。再次安装，提示配置文件不存在，WTF！配置文件不该你软件给我创建吗？我想。       </p>
+<p>查阅资料才知，还有 <code>apt-get purge</code> 这一选项，purge 清除。            </p>
+<hr>
+<p><strong>划重点：</strong><br>apt-get remove 会删除软件包而保留软件的配置文件<br>apt-get purge 会同时清除软件包和软件的配置文件</p>
+<hr>
+<p><strong>但是为什么重新安装会失败呢？</strong><br>系统中存在dpkg这么一个工具，会记录软件包的状态，不只是安装和未安装两种状态，会记录以下这些状态：</p>
+<blockquote>
+<p>not-installed - The package is not installed on this system<br>config-files - Only the configuration files are deployed to this system<br>half-installed - The installation of the package has been started, but not completed<br>unpacked - The package is unpacked, but not configured<br>half-configured - The package is unpacked and configuration has started but not completed<br>triggers-awaited - The package awaits trigger processing by another package<br>triggers-pending - The package has been triggered<br>installed - The packaged is unpacked and configured OK         </p>
+</blockquote>
+<p>当执行<code>apt-get install</code>时，apt软件包管理工具会先检查要安装的软件的状态，向我这种情况下，手动删除了软件配置后，并不会引起dpkg中记录的状态的改变，即仍为 config-files 状态，所以安装过程会直接跳过创建配置文件这一过程。于是当软件想要启动进程的时候，才发现找不到文件。</p>
+<p>所以当你想彻底地删除软件包的时候，用 <code>apt-get purge</code> 吧</p>
+<p>原文：<a href="http://bencane.com/2014/08/18/removing-packages-and-configurations-with-apt-get/" target="_blank" rel="external">http://bencane.com/2014/08/18/removing-packages-and-configurations-with-apt-get/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/04/16/关于apt-get-remove-与-apt-get-purge/" data-id="cjfktb0bo000p0677rmu7fcxz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目展示/">项目展示</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flask/" style="font-size: 20px;">Flask</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13.33px;">RESTful</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/项目展示/" style="font-size: 10px;">项目展示</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/30/项目演示--基于地理位置的社交系统/">项目演示--基于地理位置的社交系统</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Python_cookbook/">Python Cookbook笔记 -- 数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/28/git相关/">git 相关技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/26/奇怪的-+=/">奇怪的 +=</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/教务处考试系统自动答题/">教务处考试系统自动答题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 hukx.michael<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

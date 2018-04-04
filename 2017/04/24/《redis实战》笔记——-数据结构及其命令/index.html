@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>redis 数据结构及其命令 | hukx.michael</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概述  redis 可以存储键与 5 种不同数据结构类型之间的映射，分别为 STRING(字符串), LIST(列表), SET(集合), HASH(散列), ZSET(有序集合)，有些命令是对于这些数据结构是通用的，而有些只是对于特定数据结构的。  1. STRING 字符串可以存储三种类型的值：  字节串(byte string)        整数 浮点数   如果一个存储在redis字符">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis 数据结构及其命令">
+<meta property="og:url" content="https://hukaixuan.github.io/2017/04/24/《redis实战》笔记——-数据结构及其命令/index.html">
+<meta property="og:site_name" content="hukx.michael">
+<meta property="og:description" content="概述  redis 可以存储键与 5 种不同数据结构类型之间的映射，分别为 STRING(字符串), LIST(列表), SET(集合), HASH(散列), ZSET(有序集合)，有些命令是对于这些数据结构是通用的，而有些只是对于特定数据结构的。  1. STRING 字符串可以存储三种类型的值：  字节串(byte string)        整数 浮点数   如果一个存储在redis字符">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3340699-7d580a8ccce7de87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3340699-556d0ea1db06dcaa.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-04-04T07:44:34.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis 数据结构及其命令">
+<meta name="twitter:description" content="概述  redis 可以存储键与 5 种不同数据结构类型之间的映射，分别为 STRING(字符串), LIST(列表), SET(集合), HASH(散列), ZSET(有序集合)，有些命令是对于这些数据结构是通用的，而有些只是对于特定数据结构的。  1. STRING 字符串可以存储三种类型的值：  字节串(byte string)        整数 浮点数   如果一个存储在redis字符">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3340699-7d580a8ccce7de87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="hukx.michael" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">hukx.michael</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hukaixuan.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-《redis实战》笔记——-数据结构及其命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/" class="article-date">
+  <time datetime="2017-04-24T02:31:00.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis 数据结构及其命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-7d580a8ccce7de87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><hr>
+<p> redis 可以存储键与 5 种不同数据结构类型之间的映射，分别为 STRING(字符串), LIST(列表), SET(集合), HASH(散列), ZSET(有序集合)，有些命令是对于这些数据结构是通用的，而有些只是对于特定数据结构的。</p>
+<hr>
+<h4 id="1-STRING"><a href="#1-STRING" class="headerlink" title="1. STRING"></a>1. STRING</h4><ul>
+<li><p>字符串可以存储三种类型的值：</p>
+<ul>
+<li>字节串(byte string)       </li>
+<li>整数</li>
+<li>浮点数</li>
+</ul>
+</li>
+<li><p>如果一个存储在redis字符串中的值可以被看做十进制整数或者浮点数，那么redis便允许对该值进行如下增减操作；如果用户对一个不存在的建或一个保存了空串的键执行自增或自减操作，会被视为0处理；如果这个值不能解释成一个整数或者浮点数，执行以下增减操作会报错（Python调用之前先<code>import redis</code>, <code>conn = redis.Redis()</code>）：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>incr</td>
+<td><code>incr key</code> 将键存储的值加1</td>
+<td><code>conn.incr(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>decr</td>
+<td><code>decr key</code> 将键存储的值减1</td>
+<td><code>conn.decr(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>incrby</td>
+<td><code>incrby key amount</code> 将键存储的值加整数amount</td>
+<td><code>conn.incr(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>decrby</td>
+<td><code>decrby key amount</code> 将键存储的值减整数amount</td>
+<td><code>conn.decr(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>incrbyfloat</td>
+<td><code>incrbyfloat key amount</code> 将键存储的值加上浮点数 amount</td>
+<td><code>conn.incrbyfloat(&#39;key&#39;, amount)</code></td>
+</tr>
+<tr>
+<td>没有decrbyfloat</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>处理子串和二进制位的命令：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>append</td>
+<td><code>append key value</code>将值value追加到给定的键 key当前存储的值的末尾</td>
+<td><code>conn.append(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>getrange(2.6之前为substr)</td>
+<td><code>getrange key start end</code> 获取一个由偏移量start至end范围内所有字符组成的子串，<strong>包括start和end在内</strong>（索引以0开始）</td>
+<td><code>conn.getrange(&#39;key&#39;, start, end)</code></td>
+</tr>
+<tr>
+<td>setrange</td>
+<td><code>setrange key offset value</code> 将从偏移offset开始的子串设置为给定值</td>
+<td><code>conn.setrange(&#39;key&#39;, offset, &#39;new-value&#39;)</code></td>
+</tr>
+<tr>
+<td>位操作</td>
+<td>getbit、setbit、bitcount、bitop</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="2-LIST"><a href="#2-LIST" class="headerlink" title="2. LIST"></a>2. LIST</h4><ul>
+<li><p>redis 的列表允许用户从序列的两端push或者pop元素, 获取列表元素，以及执行各种常见的列表操作。还可以用来存储任务信息、最近浏览过的文章或者常用联系人信息。</p>
+</li>
+<li><p>常用列表命令如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和概述</th>
+<th>python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rpush</td>
+<td><code>rpush key vlaue [value ...]</code> 将一个或多个值push进列表的右端</td>
+<td><code>conn.rpush(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>lpush</td>
+<td><code>lpush key value [value ...]</code>…左端</td>
+<td><code>conn.lpush(&#39;key&#39;, &#39;value&#39;)</code></td>
+</tr>
+<tr>
+<td>rpop</td>
+<td><code>rpop key</code> 移除并返回列表最右端的元素</td>
+<td><code>conn.rpop(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>lpop</td>
+<td><code>lpop key</code> 移除并返回列表最左端的元素</td>
+<td><code>conn.lpop(&#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>lindex</td>
+<td><code>lindex key offset</code> 返回列表中偏移量为offset的元素</td>
+<td><code>conn.index(&#39;key&#39;, offset)</code></td>
+</tr>
+<tr>
+<td>lrange</td>
+<td><code>lrange key start stop</code> 返回列表中从start偏移量到end偏移量范围内的所有元素，<strong>包括start和end</strong></td>
+<td><code>conn.lrange(&#39;key&#39;, start, stop)</code></td>
+</tr>
+<tr>
+<td>ltrim</td>
+<td><code>ltrim key start stop</code> 对列表进行修剪，只保留从start到end(<strong>包括start和end</strong>)之间的元素</td>
+<td><code>conn.ltrim(&#39;key&#39;, start, stop)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>阻塞式pop及列表之间移动元素：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blpop</td>
+<td><code>blpop key[key...] timeout</code> 从第一个非空列表中弹出位于最左端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>conn.blpop(keys, timeout)</code></td>
+</tr>
+<tr>
+<td>brpop</td>
+<td><code>brpop key[key...] timeout</code> 从第一个非空列表中弹出位于最右端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>conn.brpop(keys, timeout)</code></td>
+</tr>
+<tr>
+<td>rpoplpush</td>
+<td><code>rpoplpush source-key dest-key</code> 从source-key列表中pop出位于最右端的元素，然后将这个元素push进dest-key列表的最左端，并向用户返回这个元素</td>
+<td><code>rpoplpush(source-key, dest-key)</code></td>
+</tr>
+<tr>
+<td>brpoplpush</td>
+<td><code>brpoplpush source-key dest-key timeout</code> 从source-key列表中弹出位于最右端的元素，然后将这个元素推入dest-key列表的最左端，并向用户返回这个元素：如果souce-key为空，那么在timeout秒之内阻塞并等待可弹出的元素出现</td>
+<td><code>brpoplpush(source-key, dest-key, timeout)</code></td>
+</tr>
+</tbody>
+</table>
+<p>方便理解阻塞式(block), 演示如下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3340699-556d0ea1db06dcaa.gif?imageMogr2/auto-orient/strip" alt="阻塞式演示，左为redis-cli，右为python命令行"></p>
+<hr>
+<h4 id="3-SET"><a href="#3-SET" class="headerlink" title="3. SET"></a>3. SET</h4><ul>
+<li><p>Redis 的集合操作以无序的方式来存储多个<strong>各不相同</strong>的元素，用户可以快速地对集合必行添加元素操作，移除元素操作以及检查一个元素是否存在于集合里。</p>
+</li>
+<li><p>常用集合命令</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sadd</td>
+<td><code>sadd key item [item...]</code> 添加</td>
+<td><code>conn.sadd(key, *items)</code></td>
+</tr>
+<tr>
+<td>srem</td>
+<td><code>srem key itme [...]</code> 删除</td>
+<td><code>conn.srem(key, *items)</code></td>
+</tr>
+<tr>
+<td>sismember</td>
+<td><code>sismember</code> 检查元素item是否存在于集合key里</td>
+<td><code>conn.sismember(key, item)</code></td>
+</tr>
+<tr>
+<td>scard</td>
+<td><code>scard key</code> 返回集合包含的元素的数量</td>
+<td><code>conn.scard(key)</code></td>
+</tr>
+<tr>
+<td>semebers</td>
+<td><code>smembers key</code> 返回集合中所包含的所有元素</td>
+<td><code>conn.smembers(key)</code></td>
+</tr>
+<tr>
+<td>srandmember</td>
+<td><code>srandmember key [count]</code>从集合里面随机地返回一个或多个元素，当count为正时，命令返回的随机元素不会重复，为负数的时候可能会重复</td>
+<td><code>conn.srandmember(key, count=None)</code></td>
+</tr>
+<tr>
+<td>spop</td>
+<td><code>spop key</code> <strong>随机</strong>地移除集合中的一个元素，并返回被移除的元素</td>
+<td><code>conn.spop(key)</code></td>
+</tr>
+<tr>
+<td>smove</td>
+<td><code>smove source-key dest-key item</code>如果集合source-key包含元素item，那么从集合source-key中移除元素item，并将元素item添加到集合dest-key中；如果item被成功移除，那么命令返回1，否则返回0</td>
+<td><code>conn.smove(source-key dest-key item)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>用于组合和处理多个集合的redis命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sdiff</td>
+<td><code>sdiff key [keys...]</code>返回那些存在于第一个集合、但不存在与其他集合中的元素（<strong>差</strong>）</td>
+<td><code>conn.sdiff(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sdiffstore</td>
+<td><code>sdiffstore dest-key key [keys...]</code>将那些存在于第一个集合但并不存在与其他集合中的元素存储到dest-key键里面</td>
+<td><code>conn.sdiffstore(dest-key, key, *keys)</code></td>
+</tr>
+<tr>
+<td>sinter</td>
+<td><code>sinter key [keys...]</code>返回那些同时存在于所有集合中的元素（<strong>交</strong>）</td>
+<td><code>conn.sinter(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sinterstore</td>
+<td><code>sinterstore dest-key key [keys...]</code>交&amp;存储</td>
+<td><code>conn.sinterstore(dest-key, key, *keys)</code></td>
+</tr>
+<tr>
+<td>sunion</td>
+<td><code>sunion key [keys...]</code> <strong>并</strong></td>
+<td><code>conn.sunion(key, *keys)</code></td>
+</tr>
+<tr>
+<td>sunionstore</td>
+<td><code>sunionstore dest-key key [keys...]</code> 并&amp;存储</td>
+<td><code>conn.sunionstore(dest-key, key, *keys)</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="4-HASH"><a href="#4-HASH" class="headerlink" title="4. HASH"></a>4. HASH</h4><ul>
+<li><p>Redis的散列可以让用户将多个键值对存储到一个Redis键里面。从功能上来说，Redis为散列值提供了一些与字符串值相同的特性，是的散列非常适用于将一些相关数据存储在一起。因此可以吧这种数据聚集看做是关系数据库中行，或者文档数据库中的文档。</p>
+</li>
+<li><p>用于添加和删除键值对的散列操作</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hmget</td>
+<td><code>hmget key-name key [keys...]</code> 从散列里面获取一个或者多个键的值</td>
+<td><code>hmget(key-name, key [keys...])</code></td>
+</tr>
+<tr>
+<td>hmset</td>
+<td><code>hmset key-name key value [keys values ...]</code>为散列里的一个或多个键设置值</td>
+<td><code>hmset(key-name, dict(key=value))</code></td>
+</tr>
+<tr>
+<td>hdel</td>
+<td><code>hdel key-name key [keys ...]</code>删除散列里面的一个或多个键值对，返回删除的数量</td>
+<td><code>conn.hdel(key-name, key, [keys...])</code></td>
+</tr>
+<tr>
+<td>hlen</td>
+<td><code>hlen key-name</code> 返回散列包含的键值对数量</td>
+<td><code>conn.hlen(key-name)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Redis 散列的更高级特性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>Python redis库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexists</td>
+<td><code>hexists key-name key</code>检查给定键是否存在于散列中</td>
+<td><code>conn.hexists(&#39;key-name&#39;, &#39;key&#39;)</code></td>
+</tr>
+<tr>
+<td>hkeys</td>
+<td><code>hkeys key-name</code> 获取散列的所有键</td>
+<td><code>conn.hkeys(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hvals</td>
+<td><code>hvals key-name</code> 获取散列包含的所有值</td>
+<td><code>conn.hvals(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hgetall</td>
+<td><code>hgetall key-name</code> 获取散列包含的所有键值对</td>
+<td><code>conn.hgetall(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>hincrby</td>
+<td><code>hincrby key-name key increment</code> 将键key保存的值加上整数increment, 对散列中一个不存在的键执行自增操作时会将键的值当做0来处理</td>
+<td><code>conn.hincrby(&#39;key-name&#39;, &#39;key&#39;, increment)</code></td>
+</tr>
+<tr>
+<td>hincrbyfloat</td>
+<td><code>hincrbyfloat key-name key increment</code> 将键key保存的值加上浮点数increment，若 不存在当做0来处理</td>
+<td><code>conn.hincrbyfloat(&#39;key-name&#39;, &#39;key&#39;, increment)</code></td>
+</tr>
+</tbody>
+</table>
+<p>-<code>hgetall</code>vs <code>hkeys&amp;hget</code> :  如果散列包含的值非常大，那么用户可以先使用<code>hkeys</code> 取出散列包含的所有键， 然后再使用 <code>hget</code>一个接一个地取出键的值，从而<strong>避免因为一次获取多个大体积的值而导致服务器阻塞</strong></p>
+<hr>
+<h4 id="5-ZSET"><a href="#5-ZSET" class="headerlink" title="5. ZSET"></a>5. ZSET</h4><ul>
+<li>与散列存储键值对类似，有序集合ZSET存储着成员(member)与其分值(score)之间的映射，并提供了分值处理命令，以及根据分值大小有序地获取(fetch) 或扫描(scan) 成员和分值的命令。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>redis用例和描述</th>
+<th>python redis 库调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zadd</td>
+<td><code>zadd key-name score member [score member ...]</code> 将带有给点分值的成员添加到有序集合里面</td>
+<td><code>conn.zadd(&#39;key-name&#39;, &#39;member1&#39;, &#39;score1&#39;, &#39;member2&#39;, &#39;score2&#39;)</code> <strong>与redis标准的先输入score后输入member的做法相反</strong></td>
+</tr>
+<tr>
+<td>zrem</td>
+<td><code>zrem key-name member  [member...]</code> 从有序集合里面移除给定的成员，并返回被移除成员的数量</td>
+<td><code>conn.zrem(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zcard</td>
+<td><code>zcard key-name</code> 返回有序集合包含的成员数量</td>
+<td><code>conn.zcard(&#39;key-name&#39;)</code></td>
+</tr>
+<tr>
+<td>zincrby</td>
+<td><code>zincrby key-name increment member</code> 将member成员的分值加上increment</td>
+<td><code>conn.zincrby(&#39;key-name&#39;, &#39;member&#39;, increment)</code></td>
+</tr>
+<tr>
+<td>zcount</td>
+<td><code>zcount key-name min max</code> 返回分值介于min 和 max 之间的成员数量</td>
+<td><code>conn.zcount(&#39;key-name&#39;, min, max)</code> 获取成员的排名(以0开始)</td>
+</tr>
+<tr>
+<td>zrank</td>
+<td><code>zrank key-name member</code> 返回成员member 在有序集合中的排名</td>
+<td><code>conn.zrank(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zscore</td>
+<td><code>zscore key-name member</code> 返回成员member的分值</td>
+<td><code>conn.zscore(&#39;key-name&#39;, &#39;member&#39;)</code></td>
+</tr>
+<tr>
+<td>zrange</td>
+<td><code>zrange key-name start stop [withscores]</code> 返回有序集合中排名介于start和stop之间的成员，如果给定了可选的withscore选项，那么命令会将成员的分值也一并返回</td>
+<td><code>conn.zrange(&#39;key-name&#39;, start, stop, withscores=True)</code></td>
+</tr>
+<tr>
+<td>zrangebyscore</td>
+<td><code>zrangebyscore key min max [withscores] [limit offset count]</code> 获取有序集合中分值介于min和max 之间的所有成员</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>有序集合的范围型数据获取、删除命令，并集交集命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逆序命令(从大到小)</td>
+<td><strong>zrevrank、zrevrange、zrevrangebyscore</strong></td>
+</tr>
+<tr>
+<td>删除操作</td>
+<td><strong>zremrangebyrank、zremrangebyscore</strong></td>
+</tr>
+<tr>
+<td>交并运算</td>
+<td>1. <strong>zinterstore:</strong><code>zinterstore dest-key key-count key [key ...] [weights weight [weight ...]] [aggregate sum、min、max]</code><br>2.<strong>zunionstore:</strong><code>zunionstore dest-key key-count key [key ...] [weights weight [weight ...]] [aggregate sum、min、max]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>交集和并集运算默认使用聚合函数sum，可以通过 aggregate= sum/min/max 来指定三种不同的聚合函数，通过可选的weights参数来决定个子集合的权重。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/04/24/《redis实战》笔记——-数据结构及其命令/" data-id="cjfktb0bf000i0677lyt3xv6s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/09/RESTful-API--的Flask手动实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RESTful API的Flask手动实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/24/https/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTPS 配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目展示/">项目展示</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flask/" style="font-size: 20px;">Flask</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13.33px;">RESTful</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/项目展示/" style="font-size: 10px;">项目展示</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/30/项目演示--基于地理位置的社交系统/">项目演示--基于地理位置的社交系统</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Python_cookbook/">Python Cookbook笔记 -- 数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/28/git相关/">git 相关技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/26/奇怪的-+=/">奇怪的 +=</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/教务处考试系统自动答题/">教务处考试系统自动答题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 hukx.michael<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

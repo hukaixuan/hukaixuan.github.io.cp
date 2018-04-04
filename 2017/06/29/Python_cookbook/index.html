@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python Cookbook笔记 -- 数据结构与算法 | hukx.michael</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录最后N项（历史记录功能）collections.deque(maxlen=N)1234567891011121314from collections import dequedef search(lines, pattern, history=5):    previous_lines = deque(maxlen=history)    for line in lines:        i">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Cookbook笔记 -- 数据结构与算法">
+<meta property="og:url" content="https://hukaixuan.github.io/2017/06/29/Python_cookbook/index.html">
+<meta property="og:site_name" content="hukx.michael">
+<meta property="og:description" content="记录最后N项（历史记录功能）collections.deque(maxlen=N)1234567891011121314from collections import dequedef search(lines, pattern, history=5):    previous_lines = deque(maxlen=history)    for line in lines:        i">
+<meta property="og:updated_time" content="2018-04-04T07:57:00.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python Cookbook笔记 -- 数据结构与算法">
+<meta name="twitter:description" content="记录最后N项（历史记录功能）collections.deque(maxlen=N)1234567891011121314from collections import dequedef search(lines, pattern, history=5):    previous_lines = deque(maxlen=history)    for line in lines:        i">
+  
+    <link rel="alternate" href="/atom.xml" title="hukx.michael" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">hukx.michael</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hukaixuan.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python_cookbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/29/Python_cookbook/" class="article-date">
+  <time datetime="2017-06-29T02:45:02.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python Cookbook笔记 -- 数据结构与算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="记录最后N项（历史记录功能）collections-deque-maxlen-N"><a href="#记录最后N项（历史记录功能）collections-deque-maxlen-N" class="headerlink" title="记录最后N项（历史记录功能）collections.deque(maxlen=N)"></a>记录最后N项（历史记录功能）<strong>collections.deque(maxlen=N)</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(lines, pattern, history=<span class="number">5</span>)</span>:</span></div><div class="line">    previous_lines = deque(maxlen=history)</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</div><div class="line">        <span class="keyword">if</span> pattern <span class="keyword">in</span> line:</div><div class="line">            <span class="keyword">yield</span> line, previous_lines</div><div class="line">        previous_lines.append(line)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">with</span> open(<span class="string">'somefile.txt'</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> line, previous_lines <span class="keyword">in</span> search(f, <span class="string">'Apple'</span>, <span class="number">5</span>):</div><div class="line">            <span class="keyword">for</span> pline <span class="keyword">in</span> previous_lines:</div><div class="line">                print(pline, end=<span class="string">''</span>)</div><div class="line">            print(line, end=<span class="string">''</span>)</div><div class="line">            print(<span class="string">'-'</span>*<span class="number">20</span>)</div></pre></td></tr></table></figure>
+<h3 id="找到最大或最小的N个项：-heapq-nlargest-n-nums-heapq-hsmallest-n-nums"><a href="#找到最大或最小的N个项：-heapq-nlargest-n-nums-heapq-hsmallest-n-nums" class="headerlink" title="找到最大或最小的N个项： heapq.nlargest(n, nums) / heapq.hsmallest(n, nums)"></a>找到最大或最小的N个项： <strong>heapq.nlargest(n, nums) / heapq.hsmallest(n, nums)</strong></h3><h3 id="实现优先队列："><a href="#实现优先队列：" class="headerlink" title="实现优先队列："></a>实现优先队列：</h3><p>heapq默认是从小到大的，所以用 -priority 来做依据push，结果是从大到小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> heapq</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PriorityQueue</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self._queue = []</div><div class="line">        self._index = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, item, priority)</span>:</span></div><div class="line">        heapq.heappush(self._queue, (-priority, self._index, item)) </div><div class="line">        self._index += <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> heapq.heappop(self._queue)[<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></div><div class="line">        self.name = name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'item(&#123;!r&#125;)'</span>.format(self.name)</div><div class="line"></div><div class="line">q = PriorityQueue()</div><div class="line">q.push(Item(<span class="string">'foo'</span>), <span class="number">1</span>)</div><div class="line">q.push(Item(<span class="string">'bar'</span>), <span class="number">5</span>)</div><div class="line">q.push(Item(<span class="string">'spam'</span>), <span class="number">4</span>)</div><div class="line">q.push(Item(<span class="string">'grok'</span>), <span class="number">1</span>)</div><div class="line"></div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div><div class="line">print(q.pop())</div></pre></td></tr></table></figure>
+<h3 id="一键对多值的映射：-collections-defaultdict"><a href="#一键对多值的映射：-collections-defaultdict" class="headerlink" title="一键对多值的映射： collections.defaultdict"></a>一键对多值的映射： <strong>collections.defaultdict</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">d = defaultdict(list) </div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">1</span>)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">2</span>)</div><div class="line">d[<span class="string">'b'</span>].append(<span class="number">3</span>)</div><div class="line"></div><div class="line">d = defaultdict(set)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">1</span>)</div><div class="line">d[<span class="string">'a'</span>].append(<span class="number">2</span>)</div><div class="line">d[<span class="string">'b'</span>].append(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<h3 id="字典保留插入顺序：collections-OrderedDict"><a href="#字典保留插入顺序：collections-OrderedDict" class="headerlink" title="字典保留插入顺序：collections.OrderedDict"></a>字典保留插入顺序：<strong>collections.OrderedDict</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line">d = OrderedDict()</div><div class="line">d[<span class="string">'foo'</span>] = <span class="number">1</span></div><div class="line">d[<span class="string">'bar'</span>] = <span class="number">2</span></div><div class="line">d[<span class="string">'spam'</span>] = <span class="number">3</span></div><div class="line">d[<span class="string">'grok'</span>] = <span class="number">4</span></div></pre></td></tr></table></figure>
+<ul>
+<li>OrderedDict占用的空间比较大</li>
+<li>可以用来序列化或编码的时候保持顺序：<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line">json.dumps(d)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="字典的并交等运算："><a href="#字典的并交等运算：" class="headerlink" title="字典的并交等运算："></a>字典的并交等运算：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>, <span class="string">'z'</span>:<span class="number">3</span>&#125;</div><div class="line">b = &#123;<span class="string">'w'</span>:<span class="number">10</span>, <span class="string">'x'</span>:<span class="number">11</span>, <span class="string">'y'</span>:<span class="number">12</span>&#125;</div><div class="line">a.keys() &amp; b.keys()</div><div class="line">a.keys() - b.keys()</div><div class="line">a.items() &amp; b.items()</div></pre></td></tr></table></figure>
+<p>keys / items 可以执行 set 的一些操作，<br>values 不可以，因为 values 没有唯一性。</p>
+<h3 id="保持序列的顺序不变删除重复项："><a href="#保持序列的顺序不变删除重复项：" class="headerlink" title="保持序列的顺序不变删除重复项："></a>保持序列的顺序不变删除重复项：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dedupe</span><span class="params">(items, key=None)</span>:</span></div><div class="line">	seen = set()</div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> items:</div><div class="line">		val = item <span class="keyword">if</span> key <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">else</span> key(item)</div><div class="line">		<span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> seen:</div><div class="line">			<span class="keyword">yield</span> item</div><div class="line">			seen.add(val)</div><div class="line">			</div><div class="line">a = [&#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">3</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">1</span>, <span class="string">'y'</span>:<span class="number">2</span>&#125;, &#123;<span class="string">'x'</span>:<span class="number">2</span>, <span class="string">'y'</span>:<span class="number">4</span>&#125;]</div><div class="line">list(dedupe(a, key=<span class="keyword">lambda</span> d: (d[<span class="string">'x'</span>], d[<span class="string">'y'</span>])))</div></pre></td></tr></table></figure>
+<h3 id="命名切片：name-slice-start-stop-step"><a href="#命名切片：name-slice-start-stop-step" class="headerlink" title="命名切片：name = slice(start, stop, step)"></a>命名切片：<strong>name = slice(start, stop, step)</strong></h3><h3 id="计算某序列中最常出现的项：collections-Counter-most-common"><a href="#计算某序列中最常出现的项：collections-Counter-most-common" class="headerlink" title="计算某序列中最常出现的项：collections.Counter.most_common"></a>计算某序列中最常出现的项：<strong>collections.Counter.most_common</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">words = <span class="string">'hello world world, and hello you and me and bla bla, gds'</span>.split()</div><div class="line">word_counts = Counter(words)</div><div class="line">top_three = word_counts.most_common(<span class="number">3</span>)</div><div class="line">word_counts[<span class="string">'world'</span>]</div><div class="line">word_counts.update(morewords)</div></pre></td></tr></table></figure>
+<p>Counter 支持算数运算：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = Counter(words)</div><div class="line">b = Counter(morewords)</div><div class="line"></div><div class="line">c = a + b</div><div class="line">c = a - b</div></pre></td></tr></table></figure></p>
+<h3 id="对一个列表中的字典进行排序：用到operator-itemgetter"><a href="#对一个列表中的字典进行排序：用到operator-itemgetter" class="headerlink" title="对一个列表中的字典进行排序：用到operator.itemgetter"></a>对一个列表中的字典进行排序：用到<strong>operator.itemgetter</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rows = [&#123;<span class="string">'fname'</span>: <span class="string">'Hu'</span>, <span class="string">'lname'</span>: <span class="string">'dd'</span>, <span class="string">'uid'</span>: <span class="number">001</span>&#125;, &#123;...&#125;, &#123;...&#125;, ...]</div><div class="line">rows_by_lfname = sorted(rows, key=itemgetter(<span class="string">'lname'</span>, <span class="string">'fname'</span>))</div><div class="line"></div><div class="line">rows_by_lfname = sorted(rows, key=<span class="keyword">lambda</span> r: (r[<span class="string">'lname'</span>], r[<span class="string">'fname'</span>]))</div></pre></td></tr></table></figure>
+<h3 id="根据对象的某属性对对象进行排序：用到operator-attrgetter"><a href="#根据对象的某属性对对象进行排序：用到operator-attrgetter" class="headerlink" title="根据对象的某属性对对象进行排序：用到operator.attrgetter"></a>根据对象的某属性对对象进行排序：用到<strong>operator.attrgetter</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> attrgetter</div><div class="line">sorted(users, key=attrgetter(<span class="string">'user_id'</span>))</div></pre></td></tr></table></figure>
+<h3 id="根据某属性进行Group：-用到-itertools-groupby"><a href="#根据某属性进行Group：-用到-itertools-groupby" class="headerlink" title="根据某属性进行Group： 用到 itertools.groupby"></a>根据某属性进行Group： 用到 <strong>itertools.groupby</strong></h3><p><code>groupby(rows, key=itemgetter(&#39;a_filed&#39;)</code></p>
+<h3 id="过滤序列的元素"><a href="#过滤序列的元素" class="headerlink" title="过滤序列的元素"></a>过滤序列的元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[n for n in mylist if n&gt;0]</div><div class="line">(n for n in mylist if n&gt;0)</div><div class="line">filter(lambda x: x&gt;0, a_list)</div><div class="line">[n if n&gt;0 else 0 for n in mylist]</div></pre></td></tr></table></figure>
+<p><strong>itertools.compress</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from itertools import compress</div><div class="line">more5 = [n&gt;5 for n in counts]</div><div class="line">list(compress(addressses, more5))</div></pre></td></tr></table></figure>
+<p>compress 第一个参数是第二个参数序列对应的布尔值的序列。</p>
+<h3 id="collections-namedtuple"><a href="#collections-namedtuple" class="headerlink" title="collections.namedtuple"></a><strong>collections.namedtuple</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from collections import namedtuple</div><div class="line">Subscriber = namedtuple(&apos;Subscriber&apos;, [&apos;addr&apos;, &apos;joined&apos;])</div><div class="line">sub = Subscriber(&apos;jonesy@example.com&apos;, &apos;2014-10-19&apos;)</div><div class="line">print(sub.addr)</div><div class="line">print(sub.joined)</div></pre></td></tr></table></figure>
+<h3 id="collections-ChainMap"><a href="#collections-ChainMap" class="headerlink" title="collections.ChainMap"></a><strong>collections.ChainMap</strong></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/06/29/Python_cookbook/" data-id="cjfktb0bb000e0677yxy5qtmp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/30/项目演示--基于地理位置的社交系统/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          项目演示--基于地理位置的社交系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/28/git相关/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git 相关技巧</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目展示/">项目展示</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flask/" style="font-size: 20px;">Flask</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13.33px;">RESTful</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/项目展示/" style="font-size: 10px;">项目展示</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/30/项目演示--基于地理位置的社交系统/">项目演示--基于地理位置的社交系统</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Python_cookbook/">Python Cookbook笔记 -- 数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/28/git相关/">git 相关技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/26/奇怪的-+=/">奇怪的 +=</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/教务处考试系统自动答题/">教务处考试系统自动答题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 hukx.michael<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

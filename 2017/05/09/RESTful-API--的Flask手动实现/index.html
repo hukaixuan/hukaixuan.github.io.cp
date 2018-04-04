@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RESTful API的Flask手动实现 | hukx.michael</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RESTful web services 概念的核心就是“资源”。资源可以用URI来表示。客户端使用HTTP协议定义的方法来发送请求到这些URIs，导致这些被访问的资源状态改变。  模式 GET  http://example.com/api/orders  获取资源的信息 GET  http://example.com/api/orders/123 获取某个特定资源的信息 POST  http:">
+<meta name="keywords" content="Flask,RESTful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RESTful API的Flask手动实现">
+<meta property="og:url" content="https://hukaixuan.github.io/2017/05/09/RESTful-API--的Flask手动实现/index.html">
+<meta property="og:site_name" content="hukx.michael">
+<meta property="og:description" content="RESTful web services 概念的核心就是“资源”。资源可以用URI来表示。客户端使用HTTP协议定义的方法来发送请求到这些URIs，导致这些被访问的资源状态改变。  模式 GET  http://example.com/api/orders  获取资源的信息 GET  http://example.com/api/orders/123 获取某个特定资源的信息 POST  http:">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3340699-9825d956da07f0b6.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-06-26T15:12:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RESTful API的Flask手动实现">
+<meta name="twitter:description" content="RESTful web services 概念的核心就是“资源”。资源可以用URI来表示。客户端使用HTTP协议定义的方法来发送请求到这些URIs，导致这些被访问的资源状态改变。  模式 GET  http://example.com/api/orders  获取资源的信息 GET  http://example.com/api/orders/123 获取某个特定资源的信息 POST  http:">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3340699-9825d956da07f0b6.gif?imageMogr2/auto-orient/strip">
+  
+    <link rel="alternate" href="/atom.xml" title="hukx.michael" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">hukx.michael</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hukaixuan.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RESTful-API--的Flask手动实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/RESTful-API--的Flask手动实现/" class="article-date">
+  <time datetime="2017-05-09T08:02:00.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RESTful API的Flask手动实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/3340699-9825d956da07f0b6.gif?imageMogr2/auto-orient/strip" alt="">RESTful web services 概念的核心就是“资源”。资源可以用URI来表示。客户端使用HTTP协议定义的方法来发送请求到这些URIs，导致这些被访问的资源状态改变。</p>
+<hr>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
+<li>GET  <a href="http://example.com/api/orders" target="_blank" rel="external">http://example.com/api/orders</a>  获取资源的信息</li>
+<li>GET  <a href="http://example.com/api/orders/123" target="_blank" rel="external">http://example.com/api/orders/123</a> 获取某个特定资源的信息</li>
+<li>POST  <a href="http://example.com/api/orders" target="_blank" rel="external">http://example.com/api/orders</a> 创建新资源 </li>
+<li>PUT <a href="http://example.com/api/orders/123" target="_blank" rel="external">http://example.com/api/orders/123</a> 更新资源</li>
+<li>DELETE http:/example.com/api/orders/123 删除资源</li>
+</ul>
+<hr>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>创建一个TODO list应用，设计URL模式为： <code>http://[hostname]/todo/api/v1.0/</code></p>
+<table>
+<thead>
+<tr>
+<th>HTTP方法</th>
+<th>URL</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks</a></td>
+<td>检索任务列表</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>检索某个任务</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks</a></td>
+<td>创建新任务</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>更新任务</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><a href="http://[hostname]/todo/api/v1.0/tasks/[task_id" target="_blank" rel="external">http://[hostname]/todo/api/v1.0/tasks/[task_id</a>]</td>
+<td>删除任务</td>
+</tr>
+</tbody>
+</table>
+<p>任务属性：id(数字)、title(字符串)、description(具体描述、文本)、done(任务完成状态、布尔)</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">from flask import Flask, jsonify, abort, make_response, request, url_for</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">tasks = [</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:1,</div><div class="line">		&apos;title&apos;:&apos;白鹿原&apos;,</div><div class="line">		&apos;description&apos;:&apos;这是一定死啦塞啊；阿凯骄傲灵丹安矿鉴定暗访东方三；啊反馈；安静快撒娇扥卡机&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		&apos;id&apos;:2,</div><div class="line">		&apos;title&apos;:&apos;嫌疑人&apos;,</div><div class="line">		&apos;description&apos;:&apos;as大肯借；额看课文静安寺放大反抗航将；来否；付定金奥兰多 看企鹅长恨东澳岛啊；伐开森&apos;,</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;</div><div class="line">]</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def index():</div><div class="line">	return &apos;Hello world&apos;</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks&apos;, methods=[&apos;GET&apos;])</div><div class="line">def get_tasks():</div><div class="line">	return jsonify(&#123;&apos;tasks&apos;:list(map(make_public_task, tasks))&#125;)</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;GET&apos;])</div><div class="line">def get_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	return jsonify(task=make_public_task(task[0]))</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks&apos;, methods=[&apos;POST&apos;])</div><div class="line">def create_task():</div><div class="line">	if not request.json or &apos;title&apos; not in request.json:</div><div class="line">		abort(400)</div><div class="line">	task = &#123;</div><div class="line">		&apos;id&apos;:tasks[-1][&apos;id&apos;]+1,</div><div class="line">		&apos;title&apos;: request.json[&apos;title&apos;],</div><div class="line">		&apos;description&apos;:request.json.get(&apos;description&apos;,&apos;&apos;),</div><div class="line">		&apos;done&apos;:False</div><div class="line">	&#125;</div><div class="line">	tasks.append(task)</div><div class="line">	return jsonify(task=task), 201</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;PUT&apos;])</div><div class="line">def update_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	if not request.json:</div><div class="line">		abort(400)</div><div class="line">	# 验证各个字段...</div><div class="line">	if &apos;title&apos; in request.json and type(request.json[&apos;title&apos;])!= str:</div><div class="line">		abort(400)</div><div class="line">	if &apos;description&apos; in request.json and type(request.json[&apos;description&apos;]) is not str:</div><div class="line">		abort(400)</div><div class="line">	if &apos;done&apos; in request.json and type(request.json[&apos;done&apos;]) is not bool:</div><div class="line">		abort(400)</div><div class="line">	task[0][&apos;title&apos;] = request.json.get(&apos;title&apos;, task[0][&apos;title&apos;])</div><div class="line">	task[0][&apos;description&apos;] = request.json.get(&apos;description&apos;, task[0][&apos;description&apos;])</div><div class="line">	task[0][&apos;done&apos;] = request.json.get(&apos;done&apos;, task[0][&apos;done&apos;])</div><div class="line">	return jsonify(task=task[0])</div><div class="line"></div><div class="line">@app.route(&apos;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&apos;, methods=[&apos;DELETE&apos;])</div><div class="line">def delete_task(task_id):</div><div class="line">	task = list(filter(lambda x: x[&apos;id&apos;]==task_id, tasks))</div><div class="line">	if len(task)==0:</div><div class="line">		abort(404)</div><div class="line">	tasks.remove(task[0])</div><div class="line">	return jsonify(result=True)</div><div class="line"></div><div class="line">def make_public_task(task):</div><div class="line">	# print(&apos;😲&apos;,task)</div><div class="line">	new_tasks = &#123;&#125;</div><div class="line">	for field in task:</div><div class="line">		if field==&apos;id&apos;:</div><div class="line">			new_tasks[&apos;uri&apos;] = url_for(&apos;get_task&apos;, task_id=task[&apos;id&apos;], _external=True)</div><div class="line">		else:</div><div class="line">			new_tasks[field] = task[field]</div><div class="line">	return new_tasks</div><div class="line"></div><div class="line"></div><div class="line">@app.errorhandler(404)</div><div class="line">def not_found(error):</div><div class="line">	return make_response(jsonify(error=&apos;Not Found&apos;), 404)</div><div class="line"></div><div class="line">@app.errorhandler(400)</div><div class="line">def bad_request(error):</div><div class="line">	return make_response(jsonify(error=&apos;Bad Request&apos;), 400)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">	app.run(debug=True)</div></pre></td></tr></table></figure></p>
+<p>原文链接：<a href="http://www.pythondoc.com/flask-restful/first.html" target="_blank" rel="external">http://www.pythondoc.com/flask-restful/first.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hukaixuan.github.io/2017/05/09/RESTful-API--的Flask手动实现/" data-id="cjfktb0bd000g0677t9304nap" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RESTful/">RESTful</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/09/使用Flask-RESTful-设计-RESTful-API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用Flask-RESTful-设计-RESTful-API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/24/《redis实战》笔记——-数据结构及其命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">redis 数据结构及其命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目展示/">项目展示</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flask/" style="font-size: 20px;">Flask</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13.33px;">RESTful</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/项目展示/" style="font-size: 10px;">项目展示</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/30/项目演示--基于地理位置的社交系统/">项目演示--基于地理位置的社交系统</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Python_cookbook/">Python Cookbook笔记 -- 数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/28/git相关/">git 相关技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/26/奇怪的-+=/">奇怪的 +=</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/教务处考试系统自动答题/">教务处考试系统自动答题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 hukx.michael<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
