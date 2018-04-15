@@ -10,7 +10,7 @@
   
   <title>
     
-      基于raft实现分布式kv数据库--ASPEN | hukx.michael
+      some key point in python | hukx.michael
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -150,8 +150,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>基于raft实现分布式kv数据库--ASPEN</h2>
-  <p class="post-date">2018-04-04</p>
+  <h2>some key point in python</h2>
+  <p class="post-date">2018-04-08</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -159,18 +159,31 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="先占坑"><a href="#先占坑" class="headerlink" title="先占坑"></a>先占坑</h3></section>
+    <section class="markdown-content"><h3 id="Object-Oriented-Idioms"><a href="#Object-Oriented-Idioms" class="headerlink" title="Object Oriented Idioms"></a>Object Oriented Idioms</h3><ul>
+<li><strong>variables are not boxes</strong>, it’s more like a label stuck to the object on the right. </li>
+<li><strong>is or ==</strong>:<ul>
+<li>“==” : compares values(the data they hold) </li>
+<li>“is” : compare their identities</li>
+<li>usually we compare values so “==” appears more often</li>
+<li>“is” often use to comapare a variable to a singleton or check whether a variable is bound to <strong>None</strong>: <code>x is None</code> <code>x is not None</code></li>
+</ul>
+</li>
+<li><strong>copies are shallow(浅) by default</strong><ul>
+<li><code>copy.copy</code> <code>copy.deepcopy</code></li>
+</ul>
+</li>
+<li>the only mode of parameter passing in Python is <strong>call by sharing</strong>(引用传递)</li>
+<li><strong>avoid mutable objects as default values for parameters</strong></li>
+<li><strong>del</strong> statement deletes names, not objects</li>
+</ul>
+</section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#raft" >
-    <span class="tag-code">raft</span>
-  </a>
-
-  <a href="/tags#分布式" >
-    <span class="tag-code">分布式</span>
+  <a href="/tags#Python" >
+    <span class="tag-code">Python</span>
   </a>
 
       </div>
@@ -181,20 +194,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2017/06/30/项目演示--基于地理位置的社交系统/">
+      <a class="nav-left" href="/2018/04/04/基于raft实现分布式kv数据库--ASPEN/">
         <span class="nav-arrow">← </span>
         
-          项目演示--基于地理位置的社交系统
+          基于raft实现分布式kv数据库--ASPEN
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/04/08/some-key-point-in-python/">
-        
-          some key point in python
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -240,7 +246,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#先占坑"><span class="toc-nav-text">先占坑</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Object-Oriented-Idioms"><span class="toc-nav-text">Object Oriented Idioms</span></a></li></ol>
     
   </div>
 </aside>
@@ -250,7 +256,7 @@
 
 <script>
   (function () {
-    var url = 'https://hukaixuan.github.io/2018/04/04/基于raft实现分布式kv数据库--ASPEN/';
+    var url = 'https://hukaixuan.github.io/2018/04/08/some-key-point-in-python/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -306,7 +312,7 @@
     var gitmentConfig = "hukaixuan";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "基于raft实现分布式kv数据库--ASPEN",
+        id: "some key point in python",
         owner: "hukaixuan",
         repo: "hukaixuan.github.io",
         oauth: {
