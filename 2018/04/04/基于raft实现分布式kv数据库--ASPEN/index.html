@@ -197,7 +197,18 @@
 <li>当server的state变为leader，立即向其他节点发起appendentries请求，告诉集群中其他节点当前的leader是自己</li>
 <li>对于所有状态下的节点: 当发来的消息的任期大于server的当前任期，不管节点的当前状态是什么，立即变为follower，设置当前任期为消息传来的任期</li>
 </ul>
-<h3 id="Log-replication"><a href="#Log-replication" class="headerlink" title="Log replication:"></a>Log replication:</h3></section>
+<h3 id="Log-replication"><a href="#Log-replication" class="headerlink" title="Log replication"></a>Log replication</h3><h4 id="实现分析-1"><a href="#实现分析-1" class="headerlink" title="实现分析"></a>实现分析</h4><ul>
+<li>log replication 实际还是通过appendentries请求实现的</li>
+<li>大体过程：当一个节点成为leader后，他会不断的向其他节点发送heartbeat(空entry的appendentries请求)。当有客户端请求leader节点时，会先将客户端命令command加到节点的log列表中，在下次appendEntries请求中将command传递给其他节点，当大多数节点响应该请求将command追加到自身的log列表中时，commit该command到state_machine执行，返回结果给客户端，并在下次appendentries请求中告诉其他节点commit该command到state_machine并执行。</li>
+<li>实现细节：<ul>
+<li>leader 的nextIndex{}和matchIndex{} 为其他节点分别维护了将要发送给他的下一个log entry的index(默认leader的最后log entry的index + 1)、已知的复制到他的log entry的最大index(默认0)(PS: index start from 1)</li>
+<li><code>append_entries</code>取出每个节点的nextIndex，并把他们的前一个entry的prevLogIndex和prevLogTerm，及nextIndex位置以后的entryies发送给他们，若节点的prevLogIndex位置有entry并且Term和prevLogTerm匹配，便在自身log列表的prevLogIndex后追加entries，回送消息告诉leader prev匹配，否则回送消息告诉leader prev不匹配。</li>
+<li>若某节点的prev log entry匹配，则更新leader的matchIndex中该节点的match index并更新nextIndex为leader的last log index + 1;</li>
+<li>若节点的prev log entry不匹配，则更新leader中nextIndex该节点的next index - 1，若后续的<code>append_entries</code>仍然返回不匹配的结果，重复执行该步骤更新该节点对应的nextIndex直至匹配。</li>
+</ul>
+</li>
+</ul>
+</section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -278,7 +289,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Overview"><span class="toc-nav-text">Overview</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Leader-election"><span class="toc-nav-text">Leader election</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法规定了集群中节点的三种状态-state"><span class="toc-nav-text">raft 算法规定了集群中节点的三种状态(state):</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法中有两种timeout"><span class="toc-nav-text">raft 算法中有两种timeout:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现分析"><span class="toc-nav-text">实现分析:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#流程梳理："><span class="toc-nav-text">流程梳理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Log-replication"><span class="toc-nav-text">Log replication:</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Overview"><span class="toc-nav-text">Overview</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Leader-election"><span class="toc-nav-text">Leader election</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法规定了集群中节点的三种状态-state"><span class="toc-nav-text">raft 算法规定了集群中节点的三种状态(state):</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法中有两种timeout"><span class="toc-nav-text">raft 算法中有两种timeout:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现分析"><span class="toc-nav-text">实现分析:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#流程梳理："><span class="toc-nav-text">流程梳理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Log-replication"><span class="toc-nav-text">Log replication</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现分析-1"><span class="toc-nav-text">实现分析</span></a></li></ol></li></ol>
     
   </div>
 </aside>
