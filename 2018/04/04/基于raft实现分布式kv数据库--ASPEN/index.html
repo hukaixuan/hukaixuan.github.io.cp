@@ -159,7 +159,45 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="先占坑"><a href="#先占坑" class="headerlink" title="先占坑"></a>先占坑</h3></section>
+    <section class="markdown-content"><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>最近在看分布式系统的一致性算法，基于raft实现了一个简单的分布式kv数据库<code>ASPEN</code>，梳理一下实现过程，总结一下raft算法<br>主要写一下leader的选举和日志的复制</p>
+<ul>
+<li>节点间的消息传递没有采用同步的rpc请求，而是基于UDP，发送方发送UDP请求，接收方监听请求，执行相应逻辑后再通过UDP请求回送给发送方。这种方式的好处是请求和响应的分离；UDP不保证送达，更像真实环境并且不用处理各种响应超时；异步，不会堵塞在RPC请求上</li>
+</ul>
+<h3 id="Leader-election"><a href="#Leader-election" class="headerlink" title="Leader election"></a>Leader election</h3><h4 id="raft-算法规定了集群中节点的三种状态-state"><a href="#raft-算法规定了集群中节点的三种状态-state" class="headerlink" title="raft 算法规定了集群中节点的三种状态(state):"></a>raft 算法规定了集群中节点的三种状态(state):</h4><ul>
+<li>follower: 响应candidate的选举请求(requestVote)和leader的appendEntries请求，超过一定时间收不到leader的心跳便成为candidate </li>
+<li>candidate: 一旦成为candidate便发起requestVote请求，收到多数票则成为leader</li>
+<li>leader: 接受client命令请求，通过heartbeat下发给集群中其他节点，若大多数节点同意该命令，则apply该命令到状态机执行，返回执行结果给client，并在下次appendentries时告诉其他节点apply到状态机执行</li>
+</ul>
+<h4 id="raft-算法中有两种timeout"><a href="#raft-算法中有两种timeout" class="headerlink" title="raft 算法中有两种timeout:"></a>raft 算法中有两种timeout:</h4><ul>
+<li>election_timeout: follower在该时长内没有收到leader的heartbeat消息，则成为candidate / 一轮election在election_timeout间隔内没成功,candidate重新选举</li>
+<li>heartbeat_timeout: leader每隔heartbeat_timeout时间向其他节点发送appendentries request</li>
+</ul>
+<h4 id="实现分析"><a href="#实现分析" class="headerlink" title="实现分析:"></a>实现分析:</h4><ul>
+<li>称每个节点为一个server，在server.py定义了一个<code>Server</code>类，表示节点，每个节点只有一个<code>Server</code>类的实例，存储节点的各种属性状态</li>
+<li>由于每个节点的状态可能会在 follower/candidate/leader 三种不同的状态间切换，不同状态又对应了不同的响应操作，因此把节点状态单独抽离了出来，分别对应 state.py 中的 <code>Follower</code>/<code>Candidate</code>/<code>Leader</code> 三个类。当前节点的状态通过当前<code>Server</code>实例的<code>state</code>属性定义；三种状态中通过<code>set_server</code>方法来关联当前节点，通过<code>self._server</code>get&amp;set当前节点的各种属性值。通过这种方式，实现了节点运行过程中的状态的动态改变。</li>
+<li>该部分主要有两个线程:<ul>
+<li>主动逻辑线程：不同state下主动执行的逻辑，如follower的超时选举，candidate发起requestVote请求，leader发起appendEntries请求，及节点状态之间的改变等</li>
+<li>被动响应线程：负责消息监听，当其他节点发来的消息，执行对应逻辑，返回给发送方消息。如follower响应requestVote请求，给其他节点投票；响应appendEntries请求，重置timeout/append log entry/apply entry to state machine等</li>
+</ul>
+</li>
+<li>这部分比较关键的一点是timeout的reset，follower等待election_timeout的过程中，收到了candidate的requestVote请求或者leader的appendEntries请求时，要reset election_timeout，而等待timeout的逻辑是在主动逻辑线程，timeout的reset是在被动响应线程，这就要涉及到进程的通信，这里我用到了 <code>threading</code>模块的<code>Event</code>，通过<code>set()</code>就能终止正在进行的timeout wait，执行下面的逻辑。</li>
+</ul>
+<h4 id="流程梳理："><a href="#流程梳理：" class="headerlink" title="流程梳理："></a>流程梳理：</h4><ul>
+<li>当一个server起来的时候，初始默认状态是follower，在election_timeout的时间内，有以下几种情况：<ul>
+<li>没有其他节点发来的消息，则成为candidate</li>
+<li>candidate发来requestVote请求，重置timeout，响应请求</li>
+<li>leader发来appendentries请求，重置timeout，响应请求</li>
+</ul>
+</li>
+<li>当server的state变为candidate，当前任期加一，给自己投一票，立即向其他节点发起requestVote请求，在timeout时间内，有以下几种情况：<ul>
+<li>收到了大多节点给自己当前任期(包括自己)的投票，成为leader</li>
+<li>没有收到大多数节点(包括自己)的投票，timeout结束开始新一轮竞选</li>
+</ul>
+</li>
+<li>当server的state变为leader，立即向其他节点发起appendentries请求，告诉集群中其他节点当前的leader是自己</li>
+<li>对于所有状态下的节点: 当发来的消息的任期大于server的当前任期，不管节点的当前状态是什么，立即变为follower，设置当前任期为消息传来的任期</li>
+</ul>
+<h3 id="Log-replication"><a href="#Log-replication" class="headerlink" title="Log replication:"></a>Log replication:</h3></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -240,7 +278,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#先占坑"><span class="toc-nav-text">先占坑</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Overview"><span class="toc-nav-text">Overview</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Leader-election"><span class="toc-nav-text">Leader election</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法规定了集群中节点的三种状态-state"><span class="toc-nav-text">raft 算法规定了集群中节点的三种状态(state):</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#raft-算法中有两种timeout"><span class="toc-nav-text">raft 算法中有两种timeout:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现分析"><span class="toc-nav-text">实现分析:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#流程梳理："><span class="toc-nav-text">流程梳理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Log-replication"><span class="toc-nav-text">Log replication:</span></a></li></ol>
     
   </div>
 </aside>

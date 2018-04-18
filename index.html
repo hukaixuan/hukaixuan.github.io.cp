@@ -192,7 +192,9 @@ is or ==:
       
       <div class="article-summary">
         
-          先占坑
+          Overview最近在看分布式系统的一致性算法，基于raft实现了一个简单的分布式kv数据库ASPEN，梳理一下实现过程，总结一下raft算法主要写一下leader的选举和日志的复制
+
+节点间的消息传递没有采用同步的rpc请求，而是基于UDP，发送方发送UDP请求，接收方监听请求，执行相应逻 ...
         
       </div>
       <a class="more" href="/2018/04/04/基于raft实现分布式kv数据库--ASPEN/">Read more</a>
