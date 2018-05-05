@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="The blog of hukx.michael">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      数据库基础 | hukx.michael
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>hukx.michael</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/resume/" class="item-link">Resume</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/resume/" class="menu-link">Resume</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>数据库基础</h2>
+  <p class="post-date">2018-05-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><ul>
+<li>SQL可分为两部分：DML(数据操作语言)、DDL(数据定义语言)</li>
+<li>查询、更新指令构成DML：SELECT/UPDATE/DELETE/INSERT INTO</li>
+<li>DDL使我们能创建删除表格、定义索引、规定表间链接、施加表间约束：<ul>
+<li>CREATE DATABASE</li>
+<li>ALTER DATABASE</li>
+<li>CREATE TABLE</li>
+<li>ALTER TABLE</li>
+<li>DROP TABLE</li>
+<li>CREATE INDEX</li>
+<li>DROP INDEX</li>
+</ul>
+</li>
+<li>SELECT去重：SELECT DISTINCT 列名 FROM 表名</li>
+<li>WHERE 子句：SELECT 列名 FROM 表名 WHERE 列 运算符 值<ul>
+<li>运算符有：= 、 &lt;&gt; (不等于)、 &gt;、 &lt;、 &gt;=、 &lt;=、 BETWEEN、LIKE</li>
+<li>SQL 使用单引号来环绕文本值（大部分数据库系统也接受双引号）。如果是数值，请不要使用引号。</li>
+</ul>
+</li>
+<li>AND / OR </li>
+<li>ORDER BY: ASC(升序、默认) / DESC(降序)<ul>
+<li>SELECT Company, OrderNumber FROM Orders ORDER BY Company ASC, OrderNumber DESC;</li>
+</ul>
+</li>
+<li>INSERT INTO <ul>
+<li>INSERT INTO 表名 VALUES (值1,值2,…)</li>
+<li>指定插入数据的列：INSERT INTO table_name(列1, 列2, …) VALUES(值1,值2, …)</li>
+</ul>
+</li>
+<li>UPDATE: 修改表中的数据  UPDATE 表名 SET 列名=新值 WHERE 列名=某值</li>
+<li>DELETE: 删除表中的行 DELETE FROM 表名 WHERE 列名=某值<ul>
+<li>删除所有行：DELETE FROM 表名   或   DELETE * FROM 表名  ，在不删除表的情况下删除所有行，意味着表的结构、属性和索引都是完整的。</li>
+</ul>
+</li>
+<li>LIMIT [offset,] number</li>
+<li>LIKE / NOT LIKE:<ul>
+<li>通配符：<ul>
+<li>% 代替一个或多个字符</li>
+<li>_ 仅代替一个字符</li>
+<li>（MYSQL中不是，而是使用RLIKE）[charlist] 字符列表中的任何单一字符 、 [^charlist] 或 [!charlist] 不在字符列表中的任何单一字符 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IN: 允许在where子句中规定多个值  SELECT 列名 FROM 表名 WHERE 列名 IN (值1,值2, …)</li>
+<li>BETWEEN:   BETWEEN … AND … 用在 WHERE 子句中，选取介于两个值之间的数据范围，可以是数值、文本或日期   <ul>
+<li><code>SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2</code></li>
+<li>MYSQL 中包括value1和value2的值</li>
+<li>不在范围内  not between </li>
+</ul>
+</li>
+<li>Alias 别名：可以为列名称和表名称指定别名<ul>
+<li>表的Alias： <code>SELECT column_name(s) FROM table_name AS alias_name</code></li>
+<li>列的Alias： <code>SELECT column_name AS alias_name FROM table_name</code></li>
+</ul>
+</li>
+<li>JOIN<ul>
+<li>INNER JOIN  等同于 JOIN： 只返回匹配行   <code>SELECT column_name(s) FROM table1_name INNER JOIN table2_name ON table1_name.column=table2_name.column</code></li>
+<li>LEFT JOIN 会从左表(table1_name)返回所有行，即使有些行在右表(table2_name)中没有匹配的行  <code>SELECT column_name(s) FROM table1_name LEFT JOIN table2_name ON table1_name.column=table2_name.column</code></li>
+<li>RIGHT JOIN 会从右表(table2_name)返回所有行，即使有些行在左表(table1_name)中没有匹配的行  <code>SELECT column_name(s) FROM table1_name RIGHT JOIN table2_name ON table1_name.column=table2_name.column</code></li>
+<li>FULL JOIN 只要其中某个表存在匹配，FULL JOIN 就会返回行</li>
+</ul>
+</li>
+<li>UNION 用于合并两个或多个SELECT结果集，UNION内部的SELECT语句必须拥有相同数量的列，列有相似的数据类型，列的顺序相同。<ul>
+<li><code>SELECT column(s) FROM table1 UNION SELECT column(s) FROM table2</code>  注意: UNION会去掉重复的值，允许有重复的值用 UNION ALL, UNION 结果集中的列名总是等于 UNION 中第一个 SELECT 语句中的列名</li>
+</ul>
+</li>
+<li>SELECT INTO: 从一个表中选取数据插入另一个表中，可用于创建表的备份  <code>SELECT * INTO new_table [IN externaldatabase] FROM old_table</code> 或只插入特定的列： <code>SELECT column(s) INTO new_table [IN externaldatabase] FROM old_table</code><ul>
+<li>eg: <code>SELECT * INTO Persons IN &#39;Backup.mdb&#39; FROM Persons</code></li>
+<li>也可使用WHERE子句或表连接</li>
+</ul>
+</li>
+<li>CREATE DATABASE database_name;</li>
+<li><p>CREATE TABLE:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE table_name</div><div class="line">(</div><div class="line">    column1 data_type,</div><div class="line">    column2 data_type,</div><div class="line">    column3 data_type,</div><div class="line">    ...</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>data_type包括：</p>
+<ul>
+<li>integer(size)/int(size)/smallint(size)/tinyint(size) 仅容纳整型，括号内规定数字的最大位数</li>
+<li>decimal(size, d)/ numeric(size, d) 容纳带小数的数字，size规定数字的最大位数，d规定小数点右侧部分的最大位数</li>
+<li>char(size) 容纳固定长度的字符串，size规定字符串的长度</li>
+<li>varchar(size) 容纳可变长度的字符串，size规定字符串的最大长度</li>
+<li>date(yyyymmdd) 容纳日期</li>
+</ul>
+</li>
+<li><p>SQL约束（Consistraints）: 限制加入表的数据的类型，可以在创建表的时候规定约束（CREATE TABLE），也可以在表创建之后，（ALTER TABLE）</p>
+<ul>
+<li>NOT NULL  强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。</li>
+<li>UNIQUE    唯一标识数据库表中的每条记录</li>
+<li>PRIMARY KEY  拥有自动定义的UNIQUE约束，一个表可以有多个UNIQUE约束，只能有一个PRIMARY KEY约束</li>
+<li>FOREIGN KEY  一个表中的FOREIGN KEY指向另一个表中的PRIMARY KEY，用于预防破坏表之间连接的动作，同时防止非法数据插入外键列，因为它必须是它指向的另一个表中的PRIMARY KEY的值之一 eg: <code>FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)</code> 命名并使用多个FOREIGN KEY：<code>CONSTRAINT fk_PerOrders FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)</code></li>
+<li>CHECK  用于限定列中值的范围 eg: <code>CHECK (Id_P&gt;0)</code></li>
+<li>DEFAULT  向列中插入默认值</li>
+</ul>
+</li>
+<li>CREATE INDEX：在表中创建索引，可以在不读取整个表的情况下使数据库应用更快地查找数据（更新一个包含索引的表需要比更新一个没有索引的表更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">CREATE INDEX index_name</div><div class="line">ON table_name(column_name)</div><div class="line">```    </div><div class="line"></div><div class="line">- CREATE UNIQUE INDEX：在表上创建唯一的索引，唯一的索引意味着两个行不能拥有相同的索引值</div><div class="line">- DROP：撤销索引、表、数据库</div><div class="line">    - DROP INDEX: `ALTER TABLE table_name DROP INDEX index_name`</div><div class="line">    - DROP TABLE: `DROP TABLE table_name`</div><div class="line">    - DROP DATABASE: `DROP DATABASE database_name`</div><div class="line">    - TRUNCATE TABLE: 仅清空表中数据 `TRUNCATE TABLE table_name`</div><div class="line">- ALTER TABLE：在已有表中添加、修改、删除列</div><div class="line">    - 添加列：`ALTER TABLE table_name ADD column_name data_type`</div><div class="line">    - 删除列：`ALTER TABLE table_name DROP COLUMN column_name`</div><div class="line">    - 改变表中的数据类型：`ALTER TABLE table_name ALTER COLUMN column_name data_type`</div><div class="line">- AUTO_INCREMENT</div><div class="line">- VIEW 视图：是基于SQL语句的结果集的可视化的表。包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段。我们可以向视图添加 SQL 函数、WHERE 以及 JOIN 语句，我们也可以提交数据，就像这些来自于某个单一的表。视图总是显示最近的数据。每当用户查询视图时，数据库引擎通过使用 SQL 语句来重建数据。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>CREATE VIEW view_name AS<br>SELECT column_name(s)<br>FROM table_name<br>WHERE condition<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">- DATE 函数：</div><div class="line">    - NOW()  当前的日期和时间</div><div class="line">    - CURDATE()   当前的日期</div><div class="line">    - CURTIME()   当前的时间</div><div class="line">    - DATE()</div><div class="line">    - EXTRACT()</div><div class="line">    - DATE_ADD()</div><div class="line">    - DATE_SUB()</div><div class="line">    - DATEDIFF()</div><div class="line">    - DATE_FORMAT()</div><div class="line">- DATE 数据类型：</div><div class="line">    - DATE - 格式 YYYY-MM-DD</div><div class="line">    - DATETIME - 格式: YYYY-MM-DD HH:MM:SS</div><div class="line">    - TIMESTAMP - 格式: YYYY-MM-DD HH:MM:SS</div><div class="line">    - YEAR - 格式 YYYY 或 YY</div><div class="line">- NULL</div><div class="line">    - 无法使用比较运算符来测试 NULL 值，比如 =, &lt;, 或者 &lt;&gt;。必须使用 IS NULL 和 IS NOT NULL 操作符</div><div class="line">- IFNULL()/COALESCE()</div><div class="line">- DBMS 数据库管理系统(Database Management System)</div><div class="line">- RDBMS (Relational Database Management System)</div><div class="line">- AVG()  `SELECT AVG(column_name) FROM table_name`</div><div class="line">- COUNT()</div><div class="line">    - COUNT(column_name) 返回指定列的值的数目，null不算入</div><div class="line">    - `SELECT COUNT(*) FROM table_name` 返回表中的记录数</div><div class="line">    - COUNT(DISTINCT column_name)</div><div class="line">- FIRST(column_name) 返回指定的字段第一个记录的值</div><div class="line">- LAST(column_name)</div><div class="line">- MAX(column_name)</div><div class="line">- MIN(column_name)</div><div class="line">- SUM(column_name)</div><div class="line">- GROUP BY: 结合合计函数，根据一个或多个列对结果进行分组，如下，根据`gp_column_name`进行分组，每个`gp_column_name`对应一行记录，合计函数的结果作为他的列</div></pre></td></tr></table></figure></p>
+<p>SELECT column_name, aggregate_function(column_name)<br>FROM table_name<br>WHERE column_name operator value<br>GROUP BY gp_column_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- HAVING：增加HAVING子句的原因是WHERE关键字不能与合计函数一起使用：</div></pre></td></tr></table></figure></p>
+<p>SELECT column_name, aggregate_function(column_name)<br>FROM table_name<br>WHERE column_name operator value<br>GROUP BY column_name<br>HAVING aggregate_function(column_name) operator value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eg:</div></pre></td></tr></table></figure></p>
+<p>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer<br>HAVING SUM(OrderPrice)&lt;2000<br>```</p>
+<ul>
+<li>UCASE() 转大写</li>
+<li>LCASE() 转小写</li>
+<li>MID(column, start[,length]) 从文本字段中提取字符</li>
+<li>LEN()</li>
+<li>ROUND(column_name, decimals) decimals 规定要返回的小数位数</li>
+<li>FORMAT(column_name, format)</li>
+</ul>
+<h3 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h3><ul>
+<li>五种存储类型：字符串STRING、列表LIST、集合SET、散列表HASH、有序集合ZSET</li>
+<li>持久化</li>
+<li>STRING支持：SET/GET/DEL</li>
+<li>LIST支持：LPUSH/RPUSH/LPOP/RPOP/LINDEX(取出index位置的元素)/LRANGE(列出某个范围内的元素)</li>
+<li>SET支持：SADD(返回1表示成功添加，0表示已经存在)/SRAM(移除元素)/SISMEMBER/SMEMBERS</li>
+<li>HASH支持：HSET/HGETALL(获取所有的键值对)/HDEL/</li>
+<li>ZSET有序集合：键为成员，值为分值(浮点数，依分值排序)<ul>
+<li>ZADD：zadd zset-key socre member</li>
+<li>ZRANGE</li>
+<li>ZRANGEBYSCORE</li>
+<li>ZREM</li>
+</ul>
+</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Redis" >
+    <span class="tag-code">Redis</span>
+  </a>
+
+  <a href="/tags#Database" >
+    <span class="tag-code">Database</span>
+  </a>
+
+  <a href="/tags#SQL" >
+    <span class="tag-code">SQL</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/04/15/some-key-point-in-python/">
+        <span class="nav-arrow">← </span>
+        
+          some key point in python
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#SQL"><span class="toc-nav-text">SQL</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#REDIS"><span class="toc-nav-text">REDIS</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://hukaixuan.github.io/2018/05/05/数据库基础/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "hukaixuan";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "数据库基础",
+        owner: "hukaixuan",
+        repo: "hukaixuan.github.io",
+        oauth: {
+          client_id: "057dbc7c9172e901c3bb",
+          client_secret: "8a90a976396137e6ac92922a4680dcb8c8130cfb"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
